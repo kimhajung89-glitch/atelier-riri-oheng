@@ -4,28 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta name="theme-color" content="#f7f3ee">
-
 <title>아뜰리에리리 · 오행 개운컬러</title>
 
 <style>
 :root{
   --bg:#f7f3ee;
-  --card:#fff;
+  --card:#ffffff;
   --ink:#332d29;
   --muted:#81776f;
   --line:#e8dfd6;
-  --brown:#756254;
-  --red:#b94b3d;
-  --red-light:#f8e5e0;
+  --accent:#8d7564;
+  --dark:#51463e;
 }
 
 *{
   box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
 }
 
 body{
@@ -33,11 +26,11 @@ body{
   background:var(--bg);
   color:var(--ink);
   font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Apple SD Gothic Neo",
-    "Noto Sans KR",
-    sans-serif;
+  -apple-system,
+  BlinkMacSystemFont,
+  "Apple SD Gothic Neo",
+  "Noto Sans KR",
+  sans-serif;
 }
 
 .wrap{
@@ -47,51 +40,43 @@ body{
   padding:28px 16px 60px;
 }
 
-/* HEADER */
-
-.header{
-  text-align:center;
-  margin-bottom:26px;
-}
-
 .brand{
-  color:#9a806d;
+  text-align:center;
   font-size:12px;
+  letter-spacing:.2em;
+  color:#9a806d;
   font-weight:800;
-  letter-spacing:.22em;
 }
 
-.header h1{
-  margin:11px 0 7px;
+h1{
+  text-align:center;
+  margin:10px 0 8px;
   font-size:27px;
-  letter-spacing:-.05em;
+  letter-spacing:-.04em;
 }
 
-.header p{
-  margin:0;
+.subtitle{
+  text-align:center;
   color:var(--muted);
-  font-size:13px;
+  font-size:14px;
   line-height:1.7;
+  margin-bottom:25px;
 }
-
-/* CARD */
 
 .card{
   background:#fff;
   border:1px solid var(--line);
-  border-radius:24px;
-  padding:21px;
+  border-radius:22px;
+  padding:20px;
   margin-bottom:16px;
-  box-shadow:0 8px 30px rgba(70,50,35,.055);
+  box-shadow:0 8px 28px rgba(70,50,35,.06);
 }
 
 .section-title{
-  margin:0 0 15px;
   font-size:16px;
   font-weight:900;
+  margin-bottom:14px;
 }
-
-/* INPUT */
 
 .choice{
   display:grid;
@@ -108,27 +93,25 @@ body{
 }
 
 .choice span{
-  height:46px;
   display:flex;
   align-items:center;
   justify-content:center;
+  height:46px;
   border:1px solid var(--line);
-  border-radius:13px;
-  font-size:14px;
+  border-radius:12px;
   font-weight:700;
-  background:#fff;
+  font-size:14px;
 }
 
 .choice input:checked + span{
-  background:#f0e7df;
-  border-color:#b69d8b;
+  background:#f1e8df;
+  border-color:#b79f8d;
 }
 
 .grid3{
   display:grid;
   grid-template-columns:1.2fr 1fr 1fr;
   gap:9px;
-  margin-top:12px;
 }
 
 .grid2{
@@ -139,9 +122,9 @@ body{
 
 label{
   display:block;
-  margin-bottom:6px;
-  color:var(--muted);
   font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
 }
 
 input,
@@ -149,8 +132,8 @@ select,
 button{
   width:100%;
   height:48px;
-  border:1px solid #ddd3ca;
   border-radius:12px;
+  border:1px solid #ddd3ca;
   background:#fff;
   color:var(--ink);
   font-size:16px;
@@ -159,8 +142,7 @@ button{
 
 input:focus,
 select:focus{
-  outline:2px solid #d9c7b8;
-  border-color:#b69d8b;
+  outline:2px solid #ddcabc;
 }
 
 button{
@@ -168,12 +150,12 @@ button{
 }
 
 .primary{
-  height:55px;
   margin-top:15px;
-  border:0;
   background:#554a43;
   color:#fff;
+  border:none;
   font-weight:800;
+  height:54px;
 }
 
 .secondary{
@@ -182,245 +164,282 @@ button{
 
 .hint{
   margin-top:9px;
-  color:var(--muted);
   font-size:12px;
+  color:#8c827a;
   line-height:1.6;
 }
 
-/* TIME UNKNOWN */
-
-.unknown-time-box{
-  margin-top:12px;
-  padding:13px 14px;
-  border:1.5px solid #d8c6b5;
-  border-radius:14px;
-  background:#fbf7f2;
+.hidden{
+  display:none !important;
 }
-
-.unknown-time{
-  display:flex!important;
-  align-items:center;
-  gap:9px;
-  margin:0!important;
-  color:#4f4741!important;
-  font-size:14px!important;
-  font-weight:800!important;
-  cursor:pointer;
-}
-
-.unknown-time input{
-  width:20px!important;
-  height:20px!important;
-  margin:0!important;
-  accent-color:#8d7564;
-}
-
-.time-help{
-  margin:6px 0 0 29px;
-  color:#8b8176;
-  font-size:12px;
-  line-height:1.5;
-}
-
-/* ERROR */
 
 .error{
   margin-top:12px;
   padding:12px;
-  border:1px solid #f0c9c1;
   border-radius:12px;
-  background:#fff2f0;
-  color:#a33b2c;
+  background:#fff1ef;
+  border:1px solid #efc8c0;
+  color:#a13e31;
   font-size:13px;
   line-height:1.5;
 }
 
-.hidden{
-  display:none!important;
+.unknown-box{
+  margin-top:12px;
+  padding:13px 14px;
+  border-radius:14px;
+  background:#faf7f3;
+  border:1px solid #e6d9cc;
 }
 
-/* RESULT */
+.unknown-label{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:0;
+  color:#4d443d;
+  font-size:14px;
+  font-weight:800;
+}
 
-.result{
+.unknown-label input{
+  width:19px;
+  height:19px;
+  margin:0;
+}
+
+.unknown-help{
+  margin:6px 0 0 28px;
+  color:#8b8179;
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* 결과 */
+
+.result-card{
+  padding:0;
   overflow:hidden;
 }
 
 .result-header{
-  margin:-21px -21px 0;
-  padding:27px 20px 23px;
+  padding:28px 20px 24px;
   text-align:center;
-  background:linear-gradient(180deg,#fbf6ee 0%,#fff 100%);
+  background:linear-gradient(
+    180deg,
+    #fbf6ef 0%,
+    #fffdf9 100%
+  );
   border-bottom:1px solid #eee5db;
 }
 
-.result-brand{
-  color:#9a8368;
+.result-header .mini{
   font-size:11px;
-  font-weight:800;
   letter-spacing:.18em;
+  color:#9a806d;
+  font-weight:800;
 }
 
 .result-header h2{
-  margin:10px 0 6px;
+  margin:9px 0 6px;
   font-size:23px;
-  letter-spacing:-.05em;
+  letter-spacing:-.04em;
 }
 
 .result-header p{
   margin:0;
-  color:#918578;
+  color:#94887e;
   font-size:12px;
 }
 
-/* PILLARS */
+.result-body{
+  padding:20px;
+}
 
-.pillars{
+.result-section{
+  padding:17px 0;
+  border-bottom:1px solid #eee7df;
+}
+
+.result-section:last-child{
+  border-bottom:0;
+}
+
+.result-label{
+  font-size:11px;
+  font-weight:900;
+  color:#9a8979;
+  letter-spacing:.08em;
+  margin-bottom:10px;
+}
+
+.saju-box{
+  padding:15px 10px;
+  border-radius:15px;
+  background:#f8f3ed;
+  text-align:center;
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.pillar-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:19px;
+  gap:7px;
+  margin-top:12px;
 }
 
 .pillar{
-  padding:13px 4px;
+  padding:12px 5px;
+  background:#faf8f5;
+  border-radius:13px;
   text-align:center;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:#fffaf6;
 }
 
-.pillar .key{
-  color:var(--muted);
-  font-size:11px;
+.pillar-name{
+  font-size:10px;
+  color:#91867d;
 }
 
-.pillar .value{
-  margin-top:4px;
-  font-size:21px;
+.pillar-value{
+  margin-top:5px;
+  font-size:18px;
   font-weight:900;
 }
 
-/* DATE INFO */
-
 .date-info{
-  margin-top:12px;
-  padding:13px;
-  border-radius:14px;
-  background:#fbf8f4;
-  color:#70665e;
+  margin-top:11px;
+  padding:12px;
+  border-radius:12px;
+  background:#fbf9f6;
+  color:#7e746b;
   font-size:12px;
   line-height:1.7;
 }
 
-/* RESULT SECTION */
+/* 오행 */
 
-.result-section{
-  padding:22px 0 0;
-}
-
-.result-section-title{
-  margin-bottom:13px;
-  font-size:16px;
-  font-weight:900;
-}
-
-/* OHAENG */
-
-.ohaeng-grid{
+.element-grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:7px;
+  gap:6px;
 }
 
-.ohaeng-item{
+.element-box{
   padding:11px 4px;
+  border-radius:13px;
+  background:#faf8f5;
   text-align:center;
-  border-radius:14px;
-  background:#faf8f4;
 }
 
-.ohaeng-item .name{
+.element-name{
   font-size:12px;
+  font-weight:700;
 }
 
-.ohaeng-item .number{
+.element-number{
   display:block;
-  margin-top:4px;
+  margin-top:5px;
   font-size:19px;
   font-weight:900;
 }
 
-.ohaeng-item.fire{
-  background:#fff1ed;
-  color:#a34635;
+.graph{
+  margin-top:17px;
+  display:grid;
+  gap:11px;
 }
 
-/* STRENGTH */
+.graph-row{
+  display:grid;
+  grid-template-columns:32px 1fr 35px;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+}
+
+.track{
+  height:13px;
+  background:#eee8e2;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  width:0;
+  border-radius:999px;
+  transition:width .5s ease;
+}
+
+.mok{background:#7da977}
+.hwa{background:#d66f58}
+.to{background:#d3a74c}
+.geum{background:#aaa9a4}
+.su{background:#70a7c5}
+
+/* 강약 */
 
 .strength-list{
   display:grid;
-  gap:8px;
+  gap:7px;
 }
 
 .strength-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:12px 14px;
-  border-radius:13px;
-  background:#faf8f4;
+  padding:11px 13px;
+  background:#faf8f5;
+  border-radius:12px;
   font-size:13px;
-}
-
-.strength-row strong{
-  font-weight:800;
 }
 
 .strength-row.priority{
   background:#fff0eb;
-  color:#9c4635;
-}
-
-/* PRIORITY */
-
-.priority-box{
-  padding:20px;
-  text-align:center;
-  border:1px solid #f1d2ca;
-  border-radius:19px;
-  background:#fff1ed;
-}
-
-.priority-box .small{
-  color:#8d6e65;
-  font-size:12px;
-}
-
-.priority-box .big{
-  margin-top:5px;
-  color:#a34635;
-  font-size:29px;
+  color:#9d4435;
   font-weight:900;
 }
 
-/* COLOR */
+/* 보완 */
+
+.priority-box{
+  padding:21px 15px;
+  text-align:center;
+  border-radius:18px;
+  background:#fff1ed;
+  border:1px solid #f0d1c8;
+}
+
+.priority-small{
+  color:#92766d;
+  font-size:12px;
+}
+
+.priority-big{
+  margin-top:6px;
+  font-size:28px;
+  font-weight:900;
+  color:#a44535;
+}
+
+/* 컬러 */
 
 .color-box{
-  padding:20px;
+  padding:22px 15px;
+  border-radius:19px;
   text-align:center;
   border:1px solid rgba(0,0,0,.06);
-  border-radius:19px;
 }
 
 .color-dot{
-  width:52px;
-  height:52px;
-  margin:0 auto 10px;
+  width:50px;
+  height:50px;
   border-radius:50%;
-  background:#c84a3b;
+  margin:0 auto 10px;
   box-shadow:
-    inset 0 0 0 6px rgba(255,255,255,.55),
-    0 4px 12px rgba(0,0,0,.08);
+    inset 0 0 0 5px rgba(255,255,255,.55);
 }
 
 .color-name{
@@ -428,24 +447,24 @@ button{
   font-weight:900;
 }
 
-.color-sub{
+.color-desc{
   margin-top:5px;
-  color:#81766d;
   font-size:12px;
+  opacity:.75;
 }
 
-/* BRACELET */
+/* 팔찌 */
 
 .bracelet{
-  padding:22px 17px;
+  padding:24px 16px;
+  border-radius:20px;
+  background:#f7efe5;
+  border:1px solid #eadbc8;
   text-align:center;
-  border:1px solid #eadcc9;
-  border-radius:21px;
-  background:#f7efe4;
 }
 
 .bracelet-icon{
-  font-size:27px;
+  font-size:28px;
 }
 
 .bracelet-title{
@@ -455,123 +474,87 @@ button{
 }
 
 .bracelet-stone{
-  margin-top:8px;
-  color:#7f3328;
+  margin-top:9px;
   font-size:21px;
   font-weight:900;
+  color:#7c3329;
 }
 
 .bracelet-detail{
   margin-top:7px;
-  color:#897a69;
+  color:#897a6b;
   font-size:12px;
   line-height:1.6;
 }
 
-/* NOTICE */
-
-.notice{
-  margin-top:20px;
-  padding-top:15px;
-  border-top:1px solid var(--line);
-  color:#978c82;
+.final-note{
+  padding-top:16px;
+  color:#958a80;
   font-size:11px;
   line-height:1.7;
 }
-
-/* BUTTONS */
 
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
-  margin-top:20px;
+  margin-top:16px;
 }
-
-/* MOBILE */
 
 @media(max-width:520px){
 
   .wrap{
-    padding:23px 13px 45px;
+    padding:22px 13px 45px;
   }
 
-  .card{
-    padding:18px;
-    border-radius:21px;
-  }
-
-  .header h1{
+  h1{
     font-size:24px;
   }
 
-  .pillars{
-    gap:6px;
+  .card{
+    border-radius:19px;
+    padding:17px;
   }
 
-  .pillar .value{
-    font-size:19px;
+  .result-body{
+    padding:17px;
   }
 
-  .ohaeng-grid{
-    gap:5px;
-  }
-
-  .ohaeng-item{
-    padding:10px 3px;
-  }
-
-  .ohaeng-item .number{
+  .pillar-value{
     font-size:17px;
   }
-}
 
-@media(max-width:380px){
-
-  .grid3{
-    gap:6px;
-  }
-
-  .pillars{
+  .element-grid{
     gap:4px;
   }
 
-  .pillar{
-    padding:11px 2px;
+  .element-box{
+    padding:10px 2px;
   }
 
-  .pillar .value{
+  .element-number{
     font-size:17px;
   }
 }
 </style>
 </head>
 
+
 <body>
 
 <div class="wrap">
 
-  <!-- HEADER -->
+  <div class="brand">ATELIER RIRI</div>
 
-  <header class="header">
+  <h1>🔮 오행 개운컬러 찾기</h1>
 
-    <div class="brand">
-      ATELIER RIRI
-    </div>
-
-    <h1>
-      🔮 오행 개운컬러 찾기
-    </h1>
-
-    <p>
-      생년월일과 태어난 시간을 입력하면<br>
-      나의 사주와 오행을 참고하여 개운 컬러와 원석을 확인해보세요.
-    </p>
-
-  </header>
+  <div class="subtitle">
+    생년월일과 태어난 시간을 입력하면<br>
+    나의 사주 오행과 개운 컬러, 개운원석매듭팔찌를 확인해보세요.
+  </div>
 
 
-  <!-- INPUT : BIRTH DATE -->
+  <!-- 입력 1 -->
 
   <section class="card">
 
@@ -603,44 +586,38 @@ button{
     </div>
 
 
-    <div class="grid3">
+    <div
+      class="grid3"
+      style="margin-top:12px"
+    >
 
       <div>
-        <label for="year">
-          년
-        </label>
-
+        <label>년</label>
         <input
           id="year"
           inputmode="numeric"
-          placeholder="1989"
           maxlength="4"
+          placeholder="1989"
         >
       </div>
 
       <div>
-        <label for="month">
-          월
-        </label>
-
+        <label>월</label>
         <input
           id="month"
           inputmode="numeric"
-          placeholder="10"
           maxlength="2"
+          placeholder="10"
         >
       </div>
 
       <div>
-        <label for="day">
-          일
-        </label>
-
+        <label>일</label>
         <input
           id="day"
           inputmode="numeric"
-          placeholder="09"
           maxlength="2"
+          placeholder="09"
         >
       </div>
 
@@ -648,31 +625,27 @@ button{
 
 
     <label
-      class="leap hidden"
       id="leapWrap"
-      style="margin-top:11px;"
+      class="hidden"
+      style="margin-top:10px"
     >
-
       <input
         type="checkbox"
         id="leap"
-        style="width:18px;height:18px;"
+        style="width:18px;height:18px;vertical-align:middle"
       >
-
       음력 윤달입니다
-
     </label>
 
 
     <div class="hint">
       예: 1989 / 10 / 09처럼 숫자로 직접 입력하세요.
-      음력은 윤달인 경우에만 체크해주세요.
     </div>
 
   </section>
 
 
-  <!-- INPUT : TIME -->
+  <!-- 입력 2 -->
 
   <section class="card">
 
@@ -684,39 +657,28 @@ button{
     <div class="grid2">
 
       <div>
-
-        <label for="hour">
-          시
-        </label>
-
+        <label>시</label>
         <select id="hour"></select>
-
       </div>
 
-
       <div>
-
-        <label for="minute">
-          분
-        </label>
-
+        <label>분</label>
         <select id="minute"></select>
-
       </div>
 
     </div>
 
 
-    <div class="unknown-time-box">
+    <div class="unknown-box">
 
       <label
-        class="unknown-time"
-        for="birthTimeUnknown"
+        class="unknown-label"
+        for="unknownTime"
       >
 
         <input
           type="checkbox"
-          id="birthTimeUnknown"
+          id="unknownTime"
         >
 
         <span>
@@ -725,61 +687,56 @@ button{
 
       </label>
 
-
-      <div class="time-help">
-        시간을 모르는 경우 체크하세요.
-        시주는 제외하고 년주·월주·일주를 기준으로 결과를 확인합니다.
+      <div class="unknown-help">
+        시간을 모르는 경우 체크하면 시주를 제외하고
+        년주·월주·일주를 기준으로 분석합니다.
       </div>
 
     </div>
 
 
-    <div style="margin-top:12px;">
+    <div style="margin-top:12px">
 
-      <label for="place">
+      <label>
         출생지역
       </label>
 
       <select id="place">
 
         <option value="127.105">
-          서울 · 127.105°E
+          서울
         </option>
 
         <option value="126.705">
-          인천 · 126.705°E
+          인천
         </option>
 
         <option value="127.384">
-          대전 · 127.384°E
-        </option>
-
-        <option value="127.148">
-          전주 · 127.148°E
+          대전
         </option>
 
         <option value="126.852">
-          광주 · 126.852°E
+          광주
         </option>
 
         <option value="128.601">
-          대구 · 128.601°E
+          대구
         </option>
 
         <option value="129.075">
-          부산 · 129.075°E
+          부산
         </option>
 
         <option value="129.311">
-          울산 · 129.311°E
+          울산
         </option>
 
         <option value="127.487">
-          순천 · 127.487°E
+          순천
         </option>
 
         <option value="127.734">
-          광양 · 127.734°E
+          광양
         </option>
 
         <option value="custom">
@@ -788,26 +745,20 @@ button{
 
       </select>
 
-
       <input
         id="longitude"
         class="hidden"
         inputmode="decimal"
         placeholder="경도 예: 127.734"
-        style="margin-top:8px;"
+        style="margin-top:8px"
       >
 
     </div>
 
 
-    <div class="hint">
-      출생지역은 진태양시 보정을 위한 참고값입니다.
-    </div>
-
-
     <button
       class="primary"
-      id="calc"
+      id="calculate"
     >
       ✨ 내 개운컬러 확인하기
     </button>
@@ -821,21 +772,21 @@ button{
   </section>
 
 
-  <!-- RESULT -->
+  <!-- 결과 -->
 
   <section
-    class="card result hidden"
     id="result"
+    class="card result-card hidden"
   >
 
     <div class="result-header">
 
-      <div class="result-brand">
+      <div class="mini">
         ATELIER RIRI · SAJU COLOR
       </div>
 
       <h2>
-        나의 오행 개운컬러 결과
+        나의 개운컬러 & 원석매듭팔찌
       </h2>
 
       <p>
@@ -845,333 +796,375 @@ button{
     </div>
 
 
-    <!-- TIME NOTICE -->
-
-    <div
-      id="timeNotice"
-      style="margin-top:18px;"
-    ></div>
+    <div class="result-body">
 
 
-    <!-- FOUR PILLARS -->
+      <!-- 사주 -->
 
-    <div class="result-section">
+      <div class="result-section">
 
-      <div class="result-section-title">
-        사주팔자
-      </div>
-
-
-      <div class="pillars">
-
-        <div class="pillar">
-          <div class="key">
-            년주
-          </div>
-
-          <div
-            class="value"
-            id="pYear"
-          >
-            -
-          </div>
-        </div>
-
-
-        <div class="pillar">
-          <div class="key">
-            월주
-          </div>
-
-          <div
-            class="value"
-            id="pMonth"
-          >
-            -
-          </div>
-        </div>
-
-
-        <div class="pillar">
-          <div class="key">
-            일주
-          </div>
-
-          <div
-            class="value"
-            id="pDay"
-          >
-            -
-          </div>
-        </div>
-
-
-        <div class="pillar">
-          <div class="key">
-            시주
-          </div>
-
-          <div
-            class="value"
-            id="pHour"
-          >
-            -
-          </div>
-        </div>
-
-      </div>
-
-
-      <div
-        class="date-info"
-        id="dateInfo"
-      ></div>
-
-    </div>
-
-
-    <!-- RAW OHAENG -->
-
-    <div class="result-section">
-
-      <div class="result-section-title">
-        원국 오행 구성
-      </div>
-
-
-      <div class="ohaeng-grid">
-
-        <div class="ohaeng-item">
-          <span class="name">목</span>
-          <span
-            class="number"
-            id="raw-mok"
-          >
-            0
-          </span>
-        </div>
-
-
-        <div class="ohaeng-item fire">
-          <span class="name">화</span>
-          <span
-            class="number"
-            id="raw-hwa"
-          >
-            0
-          </span>
-        </div>
-
-
-        <div class="ohaeng-item">
-          <span class="name">토</span>
-          <span
-            class="number"
-            id="raw-to"
-          >
-            0
-          </span>
-        </div>
-
-
-        <div class="ohaeng-item">
-          <span class="name">금</span>
-          <span
-            class="number"
-            id="raw-geum"
-          >
-            0
-          </span>
-        </div>
-
-
-        <div class="ohaeng-item">
-          <span class="name">수</span>
-          <span
-            class="number"
-            id="raw-su"
-          >
-            0
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- STRENGTH -->
-
-    <div class="result-section">
-
-      <div class="result-section-title">
-        오행 강약 분석
-      </div>
-
-
-      <div
-        class="strength-list"
-        id="strengthList"
-      ></div>
-
-    </div>
-
-
-    <!-- PRIORITY -->
-
-    <div class="result-section">
-
-      <div class="result-section-title">
-        보완 우선 오행
-      </div>
-
-
-      <div class="priority-box">
-
-        <div class="small">
-          나에게 보완이 필요한 오행
+        <div class="result-label">
+          사주팔자
         </div>
 
         <div
-          class="big"
-          id="priorityElement"
+          id="sajuText"
+          class="saju-box"
         >
           -
         </div>
 
-      </div>
 
-    </div>
+        <div class="pillar-grid">
 
+          <div class="pillar">
+            <div class="pillar-name">년주</div>
+            <div
+              id="yearPillar"
+              class="pillar-value"
+            >
+              -
+            </div>
+          </div>
 
-    <!-- COLOR -->
+          <div class="pillar">
+            <div class="pillar-name">월주</div>
+            <div
+              id="monthPillar"
+              class="pillar-value"
+            >
+              -
+            </div>
+          </div>
 
-    <div class="result-section">
+          <div class="pillar">
+            <div class="pillar-name">일주</div>
+            <div
+              id="dayPillar"
+              class="pillar-value"
+            >
+              -
+            </div>
+          </div>
 
-      <div class="result-section-title">
-        개운 컬러
-      </div>
+          <div class="pillar">
+            <div class="pillar-name">시주</div>
+            <div
+              id="hourPillar"
+              class="pillar-value"
+            >
+              -
+            </div>
+          </div>
 
+        </div>
 
-      <div
-        class="color-box"
-        id="colorBox"
-      >
 
         <div
-          class="color-dot"
-          id="colorDot"
+          id="dateInfo"
+          class="date-info"
         ></div>
 
+      </div>
+
+
+      <!-- 원국 -->
+
+      <div class="result-section">
+
+        <div class="result-label">
+          원국 오행 구성
+        </div>
+
+
+        <div class="element-grid">
+
+          <div class="element-box">
+            <span>목</span>
+            <span
+              id="rawMok"
+              class="element-number"
+            >
+              0
+            </span>
+          </div>
+
+          <div class="element-box">
+            <span>화</span>
+            <span
+              id="rawHwa"
+              class="element-number"
+            >
+              0
+            </span>
+          </div>
+
+          <div class="element-box">
+            <span>토</span>
+            <span
+              id="rawTo"
+              class="element-number"
+            >
+              0
+            </span>
+          </div>
+
+          <div class="element-box">
+            <span>금</span>
+            <span
+              id="rawGeum"
+              class="element-number"
+            >
+              0
+            </span>
+          </div>
+
+          <div class="element-box">
+            <span>수</span>
+            <span
+              id="rawSu"
+              class="element-number"
+            >
+              0
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="graph">
+
+          <div class="graph-row">
+            <b>목</b>
+            <div class="track">
+              <div
+                id="graphMok"
+                class="fill mok"
+              ></div>
+            </div>
+            <span id="graphMokNum">0</span>
+          </div>
+
+          <div class="graph-row">
+            <b>화</b>
+            <div class="track">
+              <div
+                id="graphHwa"
+                class="fill hwa"
+              ></div>
+            </div>
+            <span id="graphHwaNum">0</span>
+          </div>
+
+          <div class="graph-row">
+            <b>토</b>
+            <div class="track">
+              <div
+                id="graphTo"
+                class="fill to"
+              ></div>
+            </div>
+            <span id="graphToNum">0</span>
+          </div>
+
+          <div class="graph-row">
+            <b>금</b>
+            <div class="track">
+              <div
+                id="graphGeum"
+                class="fill geum"
+              ></div>
+            </div>
+            <span id="graphGeumNum">0</span>
+          </div>
+
+          <div class="graph-row">
+            <b>수</b>
+            <div class="track">
+              <div
+                id="graphSu"
+                class="fill su"
+              ></div>
+            </div>
+            <span id="graphSuNum">0</span>
+          </div>
+
+        </div>
+
+
+        <div class="hint">
+          그래프는 원국에 실제 존재하는 오행 구성을 보여줍니다.
+          원국의 존재 여부와 오행의 강약은 서로 다르므로
+          강약 분석은 별도로 판단합니다.
+        </div>
+
+      </div>
+
+
+      <!-- 강약 -->
+
+      <div class="result-section">
+
+        <div class="result-label">
+          오행 강약 분석
+        </div>
+
         <div
-          class="color-name"
-          id="colorName"
-        >
-          -
+          id="strengthList"
+          class="strength-list"
+        ></div>
+
+      </div>
+
+
+      <!-- 보완 -->
+
+      <div class="result-section">
+
+        <div class="result-label">
+          보완 우선 오행
         </div>
 
-        <div class="color-sub">
-          보완 오행을 참고한 개운 컬러
+        <div class="priority-box">
+
+          <div class="priority-small">
+            나에게 보완이 필요한 오행
+          </div>
+
+          <div
+            id="priority"
+            class="priority-big"
+          >
+            -
+          </div>
+
         </div>
 
       </div>
 
-    </div>
 
+      <!-- 컬러 -->
 
-    <!-- BRACELET -->
+      <div class="result-section">
 
-    <div class="result-section">
-
-      <div class="result-section-title">
-        💎 개운원석매듭팔찌
-      </div>
-
-
-      <div class="bracelet">
-
-        <div class="bracelet-icon">
-          💎
-        </div>
-
-        <div class="bracelet-title">
-          아뜰리에리리 개운원석매듭팔찌
+        <div class="result-label">
+          개운 컬러
         </div>
 
         <div
-          class="bracelet-stone"
-          id="braceletStone"
+          id="colorBox"
+          class="color-box"
         >
-          -
-        </div>
 
-        <div class="bracelet-detail">
-          2mm 천연석 · 장식 없이 원석만 사용하여 제작하는 매듭팔찌
+          <div
+            id="colorDot"
+            class="color-dot"
+          ></div>
+
+          <div
+            id="colorName"
+            class="color-name"
+          >
+            -
+          </div>
+
+          <div
+            id="colorDesc"
+            class="color-desc"
+          >
+            보완 오행을 참고한 컬러
+          </div>
+
         </div>
 
       </div>
 
-    </div>
 
+      <!-- 팔찌 -->
 
-    <!-- SUMMARY -->
+      <div class="result-section">
 
-    <div class="result-section">
+        <div class="result-label">
+          개운원석매듭팔찌
+        </div>
 
-      <div class="result-section-title">
-        ✨ 나의 결과 한눈에 보기
+        <div class="bracelet">
+
+          <div class="bracelet-icon">
+            💎
+          </div>
+
+          <div class="bracelet-title">
+            아뜰리에리리 개운원석매듭팔찌
+          </div>
+
+          <div
+            id="stoneName"
+            class="bracelet-stone"
+          >
+            -
+          </div>
+
+          <div class="bracelet-detail">
+            2mm 천연석 · 장식 없이 원석만 사용<br>
+            보완 우선 오행을 참고하여 추천합니다.
+          </div>
+
+        </div>
+
       </div>
 
 
-      <div
-        class="date-info"
-        id="summary"
-      ></div>
+      <!-- 설명 -->
 
-    </div>
+      <div class="result-section">
 
+        <div
+          id="meaning"
+          class="date-info"
+        ></div>
 
-    <!-- NOTICE -->
-
-    <div class="notice">
-
-      ※ 원국에 해당 오행이 존재하는 것과 오행의 강약은 서로 다릅니다.
-      일간·월령·지장간·통근·생극 관계를 반영한 참고용 분석입니다.
-      <br><br>
-
-      ※ 오행·색상·원석은 전통적인 상징을 바탕으로 한
-      상품 콘셉트용 참고 정보이며 특정 효능이나 결과를 보장하지 않습니다.
-
-    </div>
+      </div>
 
 
-    <!-- ACTION -->
+      <div class="final-note">
 
-    <div class="actions">
+        ※ 원국에 해당 오행이 존재하는 것과 오행의 강약은 서로 다릅니다.<br>
+        일간·월령·지장간·통근·생극 관계를 반영한 참고용 분석입니다.<br><br>
+
+        ※ 오행·색상·원석은 전통적 상징을 바탕으로 한
+        상품 콘셉트용 참고 정보이며 특정 결과나 효능을 보장하지 않습니다.
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          id="copy"
+          class="secondary"
+        >
+          결과 문구 복사
+        </button>
+
+        <button
+          id="share"
+          class="secondary"
+        >
+          결과 공유
+        </button>
+
+      </div>
+
 
       <button
-        class="secondary"
-        id="copy"
+        id="reset"
+        class="primary"
       >
-        결과 문구 복사
-      </button>
-
-      <button
-        class="secondary"
-        id="share"
-      >
-        결과 공유
+        다시 조회하기
       </button>
 
     </div>
-
-
-    <button
-      class="primary"
-      id="reset"
-    >
-      다시 조회하기
-    </button>
 
   </section>
 
@@ -1180,178 +1173,182 @@ button{
 
 <script type="module">
 
-/* =========================================================
-   아뜰리에리리 오행 개운컬러
-   ========================================================= */
-
 import {
   calculateFourPillars,
   solarToLunar,
   lunarToSolar,
   getHeavenlyStemElement,
   getEarthlyBranchElement
-} from "https://esm.unpkg.com/manseryeok@2.0.0";
+}
+from "https://esm.unpkg.com/manseryeok@2.0.0";
 
 
-/* ---------------------------------------------------------
+/* =========================
    기본 함수
-   --------------------------------------------------------- */
+========================= */
 
 const $ = id => document.getElementById(id);
 
 
-/* ---------------------------------------------------------
+/* =========================
    시간 선택
-   --------------------------------------------------------- */
+========================= */
 
-const hourSel = $("hour");
-const minuteSel = $("minute");
+const hour = $("hour");
+const minute = $("minute");
 
-for(let h=0; h<24; h++){
+for(let i=0;i<24;i++){
 
-  hourSel.insertAdjacentHTML(
+  hour.insertAdjacentHTML(
     "beforeend",
-    `<option value="${h}">
-      ${String(h).padStart(2,"0")}시
+    `<option value="${i}">
+      ${String(i).padStart(2,"0")}시
     </option>`
   );
 
 }
 
-for(let m=0; m<60; m++){
+for(let i=0;i<60;i++){
 
-  minuteSel.insertAdjacentHTML(
+  minute.insertAdjacentHTML(
     "beforeend",
-    `<option value="${m}">
-      ${String(m).padStart(2,"0")}분
+    `<option value="${i}">
+      ${String(i).padStart(2,"0")}분
     </option>`
   );
 
 }
 
-hourSel.value = "12";
-minuteSel.value = "00";
+hour.value="12";
+minute.value="00";
 
 
-/* ---------------------------------------------------------
-   태어난 시간 모름
-   --------------------------------------------------------- */
-
-$("birthTimeUnknown").addEventListener(
-  "change",
-  function(){
-
-    hourSel.disabled = this.checked;
-    minuteSel.disabled = this.checked;
-
-    hourSel.style.opacity =
-      this.checked ? ".45" : "1";
-
-    minuteSel.style.opacity =
-      this.checked ? ".45" : "1";
-
-  }
-);
-
-
-/* ---------------------------------------------------------
+/* =========================
    양력 / 음력
-   --------------------------------------------------------- */
+========================= */
 
 document
 .querySelectorAll('input[name="calendar"]')
-.forEach(radio => {
+.forEach(radio=>{
 
-  radio.addEventListener("change", () => {
+  radio.addEventListener("change",()=>{
 
     const lunar =
-      document
-      .querySelector('input[name="calendar"]:checked')
-      .value === "lunar";
+      document.querySelector(
+        'input[name="calendar"]:checked'
+      ).value === "lunar";
 
     $("leapWrap")
       .classList
-      .toggle("hidden", !lunar);
-
-    if(!lunar){
-
-      $("leap").checked = false;
-
-    }
+      .toggle("hidden",!lunar);
 
   });
 
 });
 
 
-/* ---------------------------------------------------------
+/* =========================
    출생지역
-   --------------------------------------------------------- */
+========================= */
 
 $("place").addEventListener(
   "change",
-  function(){
+  ()=>{
 
     $("longitude")
       .classList
       .toggle(
         "hidden",
-        this.value !== "custom"
+        $("place").value !== "custom"
       );
 
   }
 );
 
 
-/* ---------------------------------------------------------
-   오행 데이터
-   --------------------------------------------------------- */
+/* =========================
+   태어난 시간 모름
+========================= */
 
-const DATA = {
+$("unknownTime").addEventListener(
+  "change",
+  ()=>{
+
+    const disabled =
+      $("unknownTime").checked;
+
+    hour.disabled=disabled;
+    minute.disabled=disabled;
+
+    hour.style.opacity =
+      disabled ? ".45" : "1";
+
+    minute.style.opacity =
+      disabled ? ".45" : "1";
+
+  }
+);
+
+
+/* =========================
+   오행 정보
+========================= */
+
+const DATA={
 
   목:{
     color:"그린",
     hex:"#dcebd8",
-    dot:"#6e9b6b",
-    stone:"그린 가넷"
+    text:"#3f6740",
+    stone:"그린가넷",
+    meaning:
+      "성장·활력·새로운 시작을 상징하는 그린 계열입니다."
   },
 
   화:{
     color:"레드",
     hex:"#f4d5ce",
-    dot:"#c84a3b",
-    stone:"가넷"
+    text:"#9b4332",
+    stone:"가넷",
+    meaning:
+      "열정·표현·자신감을 상징하는 레드 계열입니다."
   },
 
   토:{
     color:"골드·브라운",
     hex:"#f1e3b9",
-    dot:"#a88745",
-    stone:"호안석"
+    text:"#7d641f",
+    stone:"호안석",
+    meaning:
+      "안정·중심·균형을 상징하는 골드·브라운 계열입니다."
   },
 
   금:{
     color:"화이트",
     hex:"#f7f7f4",
-    dot:"#d5d0c7",
-    stone:"문스톤"
+    text:"#55514b",
+    stone:"문스톤",
+    meaning:
+      "정돈·맑음·차분함을 상징하는 화이트 계열입니다."
   },
 
   수:{
     color:"하늘색·블루",
     hex:"#d9eef8",
-    dot:"#75a9c2",
-    stone:"블루 아파타이트"
+    text:"#376b83",
+    stone:"블루 아파타이트",
+    meaning:
+      "유연함·소통·흐름을 상징하는 하늘색·블루 계열입니다."
   }
 
 };
 
 
-/* ---------------------------------------------------------
-   천간 / 지지
-   --------------------------------------------------------- */
+/* =========================
+   지지 본기
+========================= */
 
-const branchMain = {
+const branchMain={
 
   子:"수",
   丑:"토",
@@ -1369,7 +1366,11 @@ const branchMain = {
 };
 
 
-const hiddenStems = {
+/* =========================
+   지장간
+========================= */
+
+const hiddenStems={
 
   子:["癸"],
 
@@ -1398,19 +1399,11 @@ const hiddenStems = {
 };
 
 
-const branchEl =
-  b => branchMain[b] || getEarthlyBranchElement(b);
+/* =========================
+   오행 관계
+========================= */
 
-
-const stemEl =
-  s => getHeavenlyStemElement(s);
-
-
-/* ---------------------------------------------------------
-   생극 관계
-   --------------------------------------------------------- */
-
-const generating = {
+const generating={
 
   목:"수",
   화:"목",
@@ -1420,8 +1413,7 @@ const generating = {
 
 };
 
-
-const generated = {
+const generated={
 
   목:"화",
   화:"토",
@@ -1431,8 +1423,7 @@ const generated = {
 
 };
 
-
-const controlling = {
+const controlling={
 
   목:"토",
   화:"금",
@@ -1443,29 +1434,45 @@ const controlling = {
 };
 
 
-/* ---------------------------------------------------------
-   사주 표시
-   --------------------------------------------------------- */
+/* =========================
+   천간 / 지지 오행
+========================= */
 
-function formatPillar(p){
+function stemElement(stem){
 
-  if(!p) return "-";
+  return getHeavenlyStemElement(stem);
 
-  return (
-    p.korean ||
-    `${p.heavenlyStem}${p.earthlyBranch}`
-  );
+}
+
+function branchElement(branch){
+
+  return branchMain[branch]
+    || getEarthlyBranchElement(branch);
 
 }
 
 
-/* ---------------------------------------------------------
-   원국 오행 구성
-   --------------------------------------------------------- */
+/* =========================
+   사주 표시
+========================= */
 
-function rawElementCounts(r, includeHour){
+function formatPillar(p){
 
-  const count = {
+  if(!p) return "미상";
+
+  return p.korean
+    || `${p.heavenlyStem}${p.earthlyBranch}`;
+
+}
+
+
+/* =========================
+   원국 오행 계산
+========================= */
+
+function rawCounts(r,includeHour){
+
+  const count={
     목:0,
     화:0,
     토:0,
@@ -1473,69 +1480,62 @@ function rawElementCounts(r, includeHour){
     수:0
   };
 
-
-  const keys =
+  const keys=
     includeHour
     ? ["year","month","day","hour"]
     : ["year","month","day"];
 
 
-  keys.forEach(k => {
+  keys.forEach(k=>{
 
-    const stem =
-      stemEl(
-        r[k].heavenlyStem
-      );
+    const p=r[k];
 
-    const branch =
-      branchEl(
-        r[k].earthlyBranch
-      );
+    count[
+      stemElement(
+        p.heavenlyStem
+      )
+    ]++;
 
-
-    count[stem] += 1;
-    count[branch] += 1;
+    count[
+      branchElement(
+        p.earthlyBranch
+      )
+    ]++;
 
   });
-
 
   return count;
 
 }
 
 
-/* ---------------------------------------------------------
-   오행 강약 분석
-   --------------------------------------------------------- */
+/* =========================
+   강약 분석
+========================= */
 
-function traditionalAnalysis(
+function strengthAnalysis(
   r,
   includeHour
 ){
 
-  const score = {
-
+  const score={
     목:0,
     화:0,
     토:0,
     금:0,
     수:0
-
   };
 
+  const add=(element,value)=>{
 
-  const add = (e,v) => {
-
-    if(score[e] !== undefined){
-
-      score[e] += v;
-
+    if(score[element]!==undefined){
+      score[element]+=value;
     }
 
   };
 
 
-  const keys =
+  const keys=
     includeHour
     ? ["year","month","day","hour"]
     : ["year","month","day"];
@@ -1543,10 +1543,12 @@ function traditionalAnalysis(
 
   /* 천간 */
 
-  keys.forEach(k => {
+  keys.forEach(k=>{
 
     add(
-      stemEl(r[k].heavenlyStem),
+      stemElement(
+        r[k].heavenlyStem
+      ),
       1
     );
 
@@ -1555,24 +1557,24 @@ function traditionalAnalysis(
 
   /* 지장간 */
 
-  keys.forEach(k => {
+  keys.forEach(k=>{
 
-    const hs =
+    const stems =
       hiddenStems[
         r[k].earthlyBranch
       ] || [];
 
+    stems.forEach((stem,index)=>{
 
-    hs.forEach((s,i) => {
-
-      let weight = .25;
-
-      if(i === 0) weight = 1;
-
-      if(i === 1) weight = .45;
+      const weight =
+        index===0
+        ? 1
+        : index===1
+        ? .45
+        : .25;
 
       add(
-        stemEl(s),
+        stemElement(stem),
         weight
       );
 
@@ -1584,45 +1586,41 @@ function traditionalAnalysis(
   /* 월령 */
 
   const monthElement =
-    branchEl(
+    branchElement(
       r.month.earthlyBranch
     );
 
-  add(
-    monthElement,
-    2.5
-  );
+  add(monthElement,2.5);
 
 
   /* 일간 */
 
   const dayMaster =
-    stemEl(
+    stemElement(
       r.day.heavenlyStem
     );
 
 
   /* 통근 */
 
-  let root = 0;
+  let root=0;
 
+  keys.forEach(k=>{
 
-  keys.forEach(k => {
-
-    const hs =
+    const stems =
       hiddenStems[
         r[k].earthlyBranch
       ] || [];
 
-
     if(
-      hs.some(
-        s => stemEl(s) === dayMaster
+      stems.some(
+        s =>
+        stemElement(s)===dayMaster
       )
     ){
 
       root +=
-        k === "month"
+        k==="month"
         ? 2
         : 1;
 
@@ -1631,33 +1629,24 @@ function traditionalAnalysis(
   });
 
 
-  /*
-   * 일간 강약 참고값
-   */
-
-  const avg =
-    Object
-    .values(score)
-    .reduce(
-      (a,b) => a+b,
-      0
-    ) / 5;
+  const average =
+    Object.values(score)
+    .reduce((a,b)=>a+b,0)/5;
 
 
   const strength =
     score[dayMaster]
-    + root * .9
-    + score[generating[dayMaster]] * .45
-    - score[generated[dayMaster]] * .35
-    - score[controlling[dayMaster]] * .25;
+    +root*.9
+    +score[generating[dayMaster]]*.45
+    -score[generated[dayMaster]]*.35
+    -score[controlling[dayMaster]]*.25;
 
 
   const strong =
-    strength > avg * 1.2;
-
+    strength > average*1.2;
 
   const weak =
-    strength < avg * .82;
+    strength < average*.82;
 
 
   let candidates;
@@ -1665,25 +1654,409 @@ function traditionalAnalysis(
 
   if(weak){
 
-    candidates = [
+    candidates=[
       generating[dayMaster],
       dayMaster
     ];
 
-  }
+  }else if(strong){
 
-  else if(strong){
-
-    candidates = [
+    candidates=[
       generated[dayMaster],
       controlling[dayMaster]
     ];
 
+  }else{
+
+    candidates=[
+      "목",
+      "화",
+      "토",
+      "금",
+      "수"
+    ]
+    .sort(
+      (a,b)=>score[a]-score[b]
+    );
+
   }
 
-  else{
 
-    candidates = [
+  const priority =
+    [...new Set(candidates)]
+    .sort(
+      (a,b)=>score[a]-score[b]
+    )[0];
+
+
+  let mode="중화형";
+
+  if(weak) mode="신약형";
+  if(strong) mode="신강형";
+
+
+  return{
+    score,
+    dayMaster,
+    monthElement,
+    root,
+    mode,
+    priority
+  };
+
+}
+
+
+/* =========================
+   강약 표시 문구
+========================= */
+
+function strengthLabel(
+  element,
+  score,
+  priority
+){
+
+  if(element===priority){
+    return "보완 필요";
+  }
+
+  if(score[element]>=3){
+    return "강";
+  }
+
+  return "보통";
+
+}
+
+
+/* =========================
+   결과 계산
+========================= */
+
+$("calculate")
+.addEventListener(
+"click",
+()=>{
+
+  $("error")
+    .classList
+    .add("hidden");
+
+
+  try{
+
+    const y=
+      Number($("year").value);
+
+    const m=
+      Number($("month").value);
+
+    const d=
+      Number($("day").value);
+
+
+    const unknown=
+      $("unknownTime").checked;
+
+
+    const h=
+      unknown
+      ? 12
+      : Number(hour.value);
+
+
+    const min=
+      unknown
+      ? 0
+      : Number(minute.value);
+
+
+    const calendar=
+      document.querySelector(
+        'input[name="calendar"]:checked'
+      ).value;
+
+
+    const leap=
+      $("leap").checked;
+
+
+    if(
+      !Number.isInteger(y) ||
+      !Number.isInteger(m) ||
+      !Number.isInteger(d)
+    ){
+
+      throw new Error(
+        "생년월일을 정확하게 입력해주세요."
+      );
+
+    }
+
+
+    if(
+      y<1800 ||
+      y>2300 ||
+      m<1 ||
+      m>12 ||
+      d<1 ||
+      d>31
+    ){
+
+      throw new Error(
+        "생년월일을 정확하게 입력해주세요."
+      );
+
+    }
+
+
+    /* =====================
+       음력 → 양력
+    ===================== */
+
+    let solarY=y;
+    let solarM=m;
+    let solarD=d;
+
+    let lunarText="";
+
+
+    if(calendar==="lunar"){
+
+      if(y>2100){
+
+        throw new Error(
+          "음력은 2100년까지 지원합니다."
+        );
+
+      }
+
+
+      const solar=
+        lunarToSolar(
+          y,
+          m,
+          d,
+          leap
+        );
+
+
+      solarY=solar.year;
+      solarM=solar.month;
+      solarD=solar.day;
+
+
+      lunarText=
+        `음력 ${y}년 ${m}월 ${d}일`
+        +(leap ? " (윤달)" : "");
+
+    }else{
+
+      const lunar=
+        solarToLunar(
+          y,
+          m,
+          d
+        );
+
+
+      lunarText=
+        `음력 ${lunar.year}년 ${lunar.month}월 ${lunar.day}일`
+        +(lunar.isLeapMonth ? " (윤달)" : "");
+
+    }
+
+
+    /* =====================
+       경도
+    ===================== */
+
+    let longitude=
+      Number($("place").value);
+
+
+    if(
+      $("place").value==="custom"
+    ){
+
+      longitude=
+        Number($("longitude").value);
+
+
+      if(
+        !Number.isFinite(longitude) ||
+        longitude<-180 ||
+        longitude>180
+      ){
+
+        throw new Error(
+          "출생지 경도를 올바르게 입력해주세요."
+        );
+
+      }
+
+    }
+
+
+    /* =====================
+       사주 계산
+    ===================== */
+
+    const r=
+      calculateFourPillars({
+
+        year:solarY,
+        month:solarM,
+        day:solarD,
+        hour:h,
+        minute:min,
+
+        isLunar:false,
+
+        trueSolarTime:{
+          longitude,
+          applyEquationOfTime:true,
+          applyHistoricalDst:true
+        },
+
+        dayBoundary:"midnight"
+
+      });
+
+
+    /* =====================
+       분석
+    ===================== */
+
+    const raw=
+      rawCounts(
+        r,
+        !unknown
+      );
+
+
+    const analysis=
+      strengthAnalysis(
+        r,
+        !unknown
+      );
+
+
+    const priority=
+      analysis.priority;
+
+
+    const data=
+      DATA[priority];
+
+
+    const weighted=
+      analysis.score;
+
+
+    /* =====================
+       사주 표시
+    ===================== */
+
+    const yearP=
+      formatPillar(r.year);
+
+    const monthP=
+      formatPillar(r.month);
+
+    const dayP=
+      formatPillar(r.day);
+
+    const hourP=
+      unknown
+      ? "미상"
+      : formatPillar(r.hour);
+
+
+    $("sajuText").textContent=
+      `${yearP} · ${monthP} · ${dayP} · ${hourP}`;
+
+
+    $("yearPillar").textContent=
+      yearP;
+
+    $("monthPillar").textContent=
+      monthP;
+
+    $("dayPillar").textContent=
+      dayP;
+
+    $("hourPillar").textContent=
+      hourP;
+
+
+    $("dateInfo").innerHTML=
+      `입력 날짜 : ${
+        calendar==="lunar"
+        ? lunarText
+        : `양력 ${solarY}년 ${solarM}월 ${solarD}일`
+      }<br>
+      변환 기준 양력 : ${solarY}년 ${solarM}월 ${solarD}일<br>
+      출생시간 : ${
+        unknown
+        ? "미상"
+        : `${String(h).padStart(2,"0")}:${String(min).padStart(2,"0")}`
+      } · 경도 ${longitude.toFixed(3)}°E`;
+
+
+    /* =====================
+       원국 숫자
+    ===================== */
+
+    $("rawMok").textContent=raw.목;
+    $("rawHwa").textContent=raw.화;
+    $("rawTo").textContent=raw.토;
+    $("rawGeum").textContent=raw.금;
+    $("rawSu").textContent=raw.수;
+
+
+    /* =====================
+       그래프
+    ===================== */
+
+    const max=8;
+
+
+    const graphData={
+      목:["graphMok","graphMokNum"],
+      화:["graphHwa","graphHwaNum"],
+      토:["graphTo","graphToNum"],
+      금:["graphGeum","graphGeumNum"],
+      수:["graphSu","graphSuNum"]
+    };
+
+
+    Object.entries(graphData)
+    .forEach(([element,ids])=>{
+
+      const value=
+        Number(raw[element]||0);
+
+
+      $(ids[0]).style.width=
+        Math.min(
+          value/max*100,
+          100
+        )+"%";
+
+
+      $(ids[1]).textContent=
+        value;
+
+    });
+
+
+    /* =====================
+       강약
+    ===================== */
+
+    const elements=[
       "목",
       "화",
       "토",
@@ -1691,770 +2064,299 @@ function traditionalAnalysis(
       "수"
     ];
 
-  }
+
+    $("strengthList").innerHTML=
+      elements
+      .map(element=>{
+
+        const label=
+          strengthLabel(
+            element,
+            weighted,
+            priority
+          );
 
 
-  /*
-   * 가장 낮은 점수를 보완 우선으로 선택
-   */
+        return `
+          <div class="strength-row ${
+            element===priority
+            ? "priority"
+            : ""
+          }">
 
-  const yongsin =
-    [...new Set(candidates)]
-    .sort(
-      (a,b) =>
-        score[a] - score[b]
-    )[0];
+            <span>
+              ${element}
+            </span>
 
+            <strong>
+              ${label}
+            </strong>
 
-  return {
+          </div>
+        `;
 
-    score,
-
-    dayMaster,
-
-    monthElement,
-
-    root,
-
-    strength,
-
-    strong,
-
-    weak,
-
-    yongsin
-
-  };
-
-}
+      })
+      .join("");
 
 
-/* ---------------------------------------------------------
-   강약 상태
-   --------------------------------------------------------- */
+    /* =====================
+       보완 오행
+    ===================== */
 
-function strengthState(
-  element,
-  score,
-  priority
-){
-
-  if(element === priority){
-
-    return "보완 필요";
-
-  }
+    $("priority").textContent=
+      priority;
 
 
-  if(score >= 4){
+    /* =====================
+       컬러
+    ===================== */
 
-    return "강";
+    $("colorBox").style.background=
+      data.hex;
 
-  }
-
-
-  return "보통";
-
-}
-
-
-/* ---------------------------------------------------------
-   결과 문구
-   --------------------------------------------------------- */
-
-let lastText = "";
+    $("colorBox").style.color=
+      data.text;
 
 
-function makeResultText(
-  r,
-  raw,
-  analysis,
-  unknownTime
-){
-
-  const missing =
-    analysis.yongsin;
-
-  const color =
-    DATA[missing].color;
-
-  const stone =
-    DATA[missing].stone;
+    $("colorDot").style.background=
+      priority==="목"
+      ? "#6e9b6b"
+      : priority==="화"
+      ? "#c84a3b"
+      : priority==="토"
+      ? "#a88745"
+      : priority==="금"
+      ? "#ddd9d0"
+      : "#75a9c2";
 
 
-  const hour =
-    unknownTime
-    ? "미상"
-    : formatPillar(r.hour);
+    $("colorName").textContent=
+      data.color;
 
 
-  const strengthText = [
-
-    `목 ${strengthState("목",analysis.score.목,missing)}`,
-
-    `화 ${strengthState("화",analysis.score.화,missing)}`,
-
-    `토 ${strengthState("토",analysis.score.토,missing)}`,
-
-    `금 ${strengthState("금",analysis.score.금,missing)}`,
-
-    `수 ${strengthState("수",analysis.score.수,missing)}`
-
-  ].join(" · ");
+    $("colorDesc").textContent=
+      `보완 우선 오행 ${priority}을 참고한 개운 컬러`;
 
 
-  return `아뜰리에리리 오행 개운컬러 결과
+    /* =====================
+       원석
+    ===================== */
 
-사주: ${formatPillar(r.year)} · ${formatPillar(r.month)} · ${formatPillar(r.day)} · ${hour}
+    $("stoneName").textContent=
+      `${data.stone} · 2mm 천연석`;
+
+
+    /* =====================
+       설명
+    ===================== */
+
+    $("meaning").innerHTML=`
+
+      <b>일간</b> : ${analysis.dayMaster}<br>
+      <b>월령</b> : ${analysis.monthElement}<br>
+      <b>통근</b> : ${analysis.root.toFixed(1)}<br>
+      <b>강약 판정</b> : ${analysis.mode}
+
+      <br><br>
+
+      원국 오행 구성과 오행 강약을
+      구분하여 분석했습니다.
+
+      <br><br>
+
+      <b>보완 우선 오행 : ${priority}</b>
+
+      <br>
+
+      <b>개운 컬러 : ${data.color}</b>
+
+      <br>
+
+      <b>개운원석매듭팔찌 : ${data.stone} 2mm 천연석</b>
+
+      <br><br>
+
+      ${data.meaning}
+
+    `;
+
+
+    /* =====================
+       결과 저장
+    ===================== */
+
+    window.lastResult=`
+
+아뜰리에리리 오행 개운컬러 결과
+
+사주: ${yearP} · ${monthP} · ${dayP} · ${hourP}
 
 원국 오행 구성:
 목 ${raw.목}, 화 ${raw.화}, 토 ${raw.토}, 금 ${raw.금}, 수 ${raw.수}
 
 오행 강약 분석:
-${strengthText}
+목 ${strengthLabel("목",weighted,priority)} ·
+화 ${strengthLabel("화",weighted,priority)} ·
+토 ${strengthLabel("토",weighted,priority)} ·
+금 ${strengthLabel("금",weighted,priority)} ·
+수 ${strengthLabel("수",weighted,priority)}
 
-보완 우선 오행: ${missing}
+보완 우선 오행: ${priority}
 
-개운 컬러: ${color}
+개운 컬러: ${data.color}
 
-개운원석매듭팔찌: ${stone} 2mm 천연석
+개운원석매듭팔찌: ${data.stone} 2mm 천연석
 
 ※ 원국에 해당 오행이 존재하는 것과 오행의 강약은 서로 다릅니다.
-일간·월령·지장간·통근·생극 관계를 반영한 참고용 분석입니다.`;
+일간·월령·지장간·통근·생극 관계를 반영한 참고용 분석입니다.
+`;
 
-}
+
+    /* =====================
+       결과 표시
+    ===================== */
+
+    $("result")
+      .classList
+      .remove("hidden");
 
 
-/* ---------------------------------------------------------
-   계산
-   --------------------------------------------------------- */
+    $("result")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
 
-$("calc").addEventListener(
-  "click",
-  async () => {
+
+  }catch(error){
+
+    $("error").textContent=
+      error?.message
+      || "계산 중 오류가 발생했습니다.";
 
     $("error")
       .classList
-      .add("hidden");
+      .remove("hidden");
 
+  }
+
+});
+
+
+/* =========================
+   복사
+========================= */
+
+$("copy")
+.addEventListener(
+"click",
+async()=>{
+
+  if(!window.lastResult){
+    return;
+  }
+
+  try{
+
+    await navigator.clipboard
+      .writeText(
+        window.lastResult
+      );
+
+    alert(
+      "결과 문구를 복사했어요."
+    );
+
+  }catch{
+
+    alert(
+      window.lastResult
+    );
+
+  }
+
+});
+
+
+/* =========================
+   공유
+========================= */
+
+$("share")
+.addEventListener(
+"click",
+async()=>{
+
+  if(!window.lastResult){
+    return;
+  }
+
+
+  if(
+    navigator.share
+  ){
 
     try{
 
-      const y =
-        Number($("year").value);
+      await navigator.share({
 
-      const m =
-        Number($("month").value);
+        title:
+          "아뜰리에리리 오행 개운컬러 결과",
 
-      const d =
-        Number($("day").value);
+        text:
+          window.lastResult
 
+      });
 
-      const unknownTime =
-        $("birthTimeUnknown").checked;
+    }catch{}
 
-
-      const h =
-        unknownTime
-        ? 12
-        : Number($("hour").value);
-
-
-      const mi =
-        unknownTime
-        ? 0
-        : Number($("minute").value);
-
-
-      const calendar =
-        document
-        .querySelector(
-          'input[name="calendar"]:checked'
-        )
-        .value;
-
-
-      const leap =
-        $("leap").checked;
-
-
-      /* 날짜 확인 */
-
-      if(
-        !Number.isInteger(y) ||
-        !Number.isInteger(m) ||
-        !Number.isInteger(d)
-      ){
-
-        throw new Error(
-          "생년월일을 정확하게 입력해주세요."
-        );
-
-      }
-
-
-      if(
-        y < 1800 ||
-        y > 2300 ||
-        m < 1 ||
-        m > 12 ||
-        d < 1 ||
-        d > 31
-      ){
-
-        throw new Error(
-          "생년월일을 확인해주세요."
-        );
-
-      }
-
-
-      /* 양력 변환 */
-
-      let solarY = y;
-      let solarM = m;
-      let solarD = d;
-
-      let lunarText = "";
-
-
-      if(calendar === "lunar"){
-
-        if(y > 2100){
-
-          throw new Error(
-            "음력 입력은 2100년까지 지원합니다."
-          );
-
-        }
-
-
-        const solar =
-          lunarToSolar(
-            y,
-            m,
-            d,
-            leap
-          );
-
-
-        solarY =
-          solar.year;
-
-        solarM =
-          solar.month;
-
-        solarD =
-          solar.day;
-
-
-        lunarText =
-          `음력 ${y}년 ${m}월 ${d}일` +
-          (leap ? " (윤달)" : "");
-
-      }
-
-      else{
-
-        const lunar =
-          solarToLunar(
-            y,
-            m,
-            d
-          );
-
-
-        lunarText =
-          `음력 ${lunar.year}년 ${lunar.month}월 ${lunar.day}일` +
-          (lunar.isLeapMonth ? " (윤달)" : "");
-
-      }
-
-
-      /* 출생지역 */
-
-      let longitude =
-        Number(
-          $("place").value
-        );
-
-
-      if(
-        $("place").value === "custom"
-      ){
-
-        longitude =
-          Number(
-            $("longitude").value
-          );
-
-
-        if(
-          !Number.isFinite(longitude) ||
-          longitude < -180 ||
-          longitude > 180
-        ){
-
-          throw new Error(
-            "출생지 경도를 올바르게 입력해주세요."
-          );
-
-        }
-
-      }
-
-
-      /* 사주 계산 */
-
-      const r =
-        calculateFourPillars({
-
-          year:solarY,
-
-          month:solarM,
-
-          day:solarD,
-
-          hour:h,
-
-          minute:mi,
-
-          isLunar:false,
-
-          trueSolarTime:{
-
-            longitude,
-
-            applyEquationOfTime:true,
-
-            applyHistoricalDst:true
-
-          },
-
-          dayBoundary:"midnight"
-
-        });
-
-
-      /* 분석 */
-
-      const analysis =
-        traditionalAnalysis(
-          r,
-          !unknownTime
-        );
-
-
-      const raw =
-        rawElementCounts(
-          r,
-          !unknownTime
-        );
-
-
-      const missing =
-        analysis.yongsin;
-
-
-      const data =
-        DATA[missing];
-
-
-      /* -----------------------------------------------
-         사주
-         ----------------------------------------------- */
-
-      $("pYear").textContent =
-        formatPillar(r.year);
-
-      $("pMonth").textContent =
-        formatPillar(r.month);
-
-      $("pDay").textContent =
-        formatPillar(r.day);
-
-      $("pHour").textContent =
-        unknownTime
-        ? "미상"
-        : formatPillar(r.hour);
-
-
-      /* -----------------------------------------------
-         날짜
-         ----------------------------------------------- */
-
-      $("dateInfo").innerHTML =
-
-        `입력: ${
-          calendar === "lunar"
-          ? lunarText
-          : `양력 ${solarY}년 ${solarM}월 ${solarD}일`
-        }<br>` +
-
-        `변환 기준 양력: ${solarY}년 ${solarM}월 ${solarD}일<br>` +
-
-        `${lunarText}<br>` +
-
-        `출생시간: ${
-          unknownTime
-          ? "미상"
-          : `${String(h).padStart(2,"0")}:${String(mi).padStart(2,"0")}`
-        } · 경도 ${longitude.toFixed(3)}°E`;
-
-
-      /* -----------------------------------------------
-         시간 모름 안내
-         ----------------------------------------------- */
-
-      if(unknownTime){
-
-        $("timeNotice").innerHTML = `
-
-          <div class="date-info">
-
-            🕰️ <b>태어난 시간을 모르는 상태로 분석했습니다.</b>
-
-            <br>
-
-            시주는 제외하고
-            년주·월주·일주를 기준으로
-            개운 컬러와 원석을 참고용으로 추천합니다.
-
-          </div>
-
-        `;
-
-      }
-
-      else{
-
-        $("timeNotice").innerHTML = "";
-
-      }
-
-
-      /* -----------------------------------------------
-         원국 오행
-         ----------------------------------------------- */
-
-      $("raw-mok").textContent =
-        raw.목;
-
-      $("raw-hwa").textContent =
-        raw.화;
-
-      $("raw-to").textContent =
-        raw.토;
-
-      $("raw-geum").textContent =
-        raw.금;
-
-      $("raw-su").textContent =
-        raw.수;
-
-
-      /* -----------------------------------------------
-         오행 강약
-         ----------------------------------------------- */
-
-      const strengthRows = [
-
-        ["목",strengthState("목",analysis.score.목,missing)],
-
-        ["화",strengthState("화",analysis.score.화,missing)],
-
-        ["토",strengthState("토",analysis.score.토,missing)],
-
-        ["금",strengthState("금",analysis.score.금,missing)],
-
-        ["수",strengthState("수",analysis.score.수,missing)]
-
-      ];
-
-
-      $("strengthList").innerHTML =
-
-        strengthRows
-        .map(item => {
-
-          const element =
-            item[0];
-
-          const state =
-            item[1];
-
-
-          return `
-
-            <div class="strength-row ${
-              element === missing
-              ? "priority"
-              : ""
-            }">
-
-              <span>
-                ${element}
-              </span>
-
-              <strong>
-                ${state}
-              </strong>
-
-            </div>
-
-          `;
-
-        })
-        .join("");
-
-
-      /* -----------------------------------------------
-         보완 오행
-         ----------------------------------------------- */
-
-      $("priorityElement")
-        .textContent =
-        missing;
-
-
-      /* -----------------------------------------------
-         컬러
-         ----------------------------------------------- */
-
-      $("colorBox").style.background =
-        data.hex;
-
-
-      $("colorDot").style.background =
-        data.dot;
-
-
-      $("colorName").textContent =
-        data.color;
-
-
-      /* -----------------------------------------------
-         팔찌
-         ----------------------------------------------- */
-
-      $("braceletStone").textContent =
-        `${data.stone} · 2mm 천연석`;
-
-
-      /* -----------------------------------------------
-         요약
-         ----------------------------------------------- */
-
-      $("summary").innerHTML = `
-
-        <b>사주</b><br>
-
-        ${formatPillar(r.year)}
-        · ${formatPillar(r.month)}
-        · ${formatPillar(r.day)}
-        · ${unknownTime ? "미상" : formatPillar(r.hour)}
-
-        <br><br>
-
-        <b>원국 오행 구성</b><br>
-
-        목 ${raw.목} ·
-        화 ${raw.화} ·
-        토 ${raw.토} ·
-        금 ${raw.금} ·
-        수 ${raw.수}
-
-        <br><br>
-
-        <b>오행 강약 분석</b><br>
-
-        목 ${strengthState("목",analysis.score.목,missing)}
-        · 화 ${strengthState("화",analysis.score.화,missing)}
-        · 토 ${strengthState("토",analysis.score.토,missing)}
-        · 금 ${strengthState("금",analysis.score.금,missing)}
-        · 수 ${strengthState("수",analysis.score.수,missing)}
-
-        <br><br>
-
-        <b>보완 우선 오행</b> :
-        ${missing}
-
-        <br>
-
-        <b>개운 컬러</b> :
-        ${data.color}
-
-        <br>
-
-        <b>개운원석매듭팔찌</b> :
-        ${data.stone} 2mm 천연석
-
-      `;
-
-
-      /* -----------------------------------------------
-         복사용 결과
-         ----------------------------------------------- */
-
-      lastText =
-        makeResultText(
-          r,
-          raw,
-          analysis,
-          unknownTime
-        );
-
-
-      /* -----------------------------------------------
-         결과 표시
-         ----------------------------------------------- */
-
-      $("result")
-        .classList
-        .remove("hidden");
-
-
-      $("result")
-        .scrollIntoView({
-          behavior:"smooth",
-          block:"start"
-        });
-
-
-    }
-
-    catch(error){
-
-      console.error(error);
-
-      $("error").textContent =
-        error?.message ||
-        "계산 중 오류가 발생했습니다. 입력값을 확인해주세요.";
-
-
-      $("error")
-        .classList
-        .remove("hidden");
-
-    }
-
-  }
-);
-
-
-/* ---------------------------------------------------------
-   복사
-   --------------------------------------------------------- */
-
-$("copy").addEventListener(
-  "click",
-  async () => {
-
-    if(!lastText) return;
-
+  }else{
 
     try{
 
       await navigator.clipboard
-        .writeText(lastText);
+        .writeText(
+          window.lastResult
+        );
 
       alert(
-        "결과 문구를 복사했어요."
+        "결과를 복사했어요."
+      );
+
+    }catch{
+
+      alert(
+        window.lastResult
       );
 
     }
 
-    catch{
-
-      alert(lastText);
-
-    }
-
   }
-);
+
+});
 
 
-/* ---------------------------------------------------------
-   공유
-   --------------------------------------------------------- */
-
-$("share").addEventListener(
-  "click",
-  async () => {
-
-    if(!lastText) return;
-
-
-    if(
-      navigator.share
-    ){
-
-      try{
-
-        await navigator.share({
-
-          title:
-            "아뜰리에리리 오행 개운컬러 결과",
-
-          text:
-            lastText
-
-        });
-
-      }
-
-      catch{}
-
-    }
-
-    else{
-
-      try{
-
-        await navigator.clipboard
-          .writeText(lastText);
-
-        alert(
-          "결과를 복사했어요. 카카오톡이나 인스타그램 등에 붙여넣어 주세요."
-        );
-
-      }
-
-      catch{
-
-        alert(lastText);
-
-      }
-
-    }
-
-  }
-);
-
-
-/* ---------------------------------------------------------
+/* =========================
    다시 조회
-   --------------------------------------------------------- */
+========================= */
 
-$("reset").addEventListener(
-  "click",
-  () => {
+$("reset")
+.addEventListener(
+"click",
+()=>{
 
-    $("result")
-      .classList
-      .add("hidden");
+  $("result")
+    .classList
+    .add("hidden");
 
 
-    window.scrollTo({
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-      top:0,
+});
 
-      behavior:"smooth"
-
-    });
-
-  }
-);
 
 </script>
 
