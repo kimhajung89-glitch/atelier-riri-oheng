@@ -350,6 +350,32 @@ button.secondary{
   color:#a34635;
 }
 
+.strength-count{
+  color:#99908a;
+  font-size:12px;
+  margin-left:5px;
+}
+
+.status-weak{
+  color:#8b6d5b;
+}
+
+.status-normal{
+  color:#66605a;
+}
+
+.status-strong{
+  color:#a34d38;
+}
+
+.status-excess{
+  color:#9a3529;
+}
+
+.status-deficient{
+  color:#55788a;
+}
+
 /* 컬러 */
 
 .colorbox{
@@ -677,31 +703,41 @@ button.secondary{
 
         <div class="barrow el-mok">
           <b>목</b>
-          <div class="track"><div class="fill" id="b-mok"></div></div>
+          <div class="track">
+            <div class="fill" id="b-mok"></div>
+          </div>
           <span id="n-mok">0</span>
         </div>
 
         <div class="barrow el-hwa">
           <b>화</b>
-          <div class="track"><div class="fill" id="b-hwa"></div></div>
+          <div class="track">
+            <div class="fill" id="b-hwa"></div>
+          </div>
           <span id="n-hwa">0</span>
         </div>
 
         <div class="barrow el-to">
           <b>토</b>
-          <div class="track"><div class="fill" id="b-to"></div></div>
+          <div class="track">
+            <div class="fill" id="b-to"></div>
+          </div>
           <span id="n-to">0</span>
         </div>
 
         <div class="barrow el-geum">
           <b>금</b>
-          <div class="track"><div class="fill" id="b-geum"></div></div>
+          <div class="track">
+            <div class="fill" id="b-geum"></div>
+          </div>
           <span id="n-geum">0</span>
         </div>
 
         <div class="barrow el-su">
           <b>수</b>
-          <div class="track"><div class="fill" id="b-su"></div></div>
+          <div class="track">
+            <div class="fill" id="b-su"></div>
+          </div>
           <span id="n-su">0</span>
         </div>
 
@@ -709,8 +745,8 @@ button.secondary{
 
 
       <div class="hint">
-        원국 오행 구성은 천간과 지지의 대표 오행을 기준으로 표시합니다.
-        오행의 존재 여부와 실제 강약은 서로 다를 수 있습니다.
+        원국 오행 구성은 각 천간과 지지의 대표 오행을 기준으로 개수를 표시합니다.
+        4주를 모두 사용하면 총 8개, 태어난 시간을 모르면 총 6개를 기준으로 합니다.
       </div>
 
     </div>
@@ -728,8 +764,10 @@ button.secondary{
       <div id="strengthList" class="strength-list"></div>
 
       <div class="hint">
-        일간·월령·지장간·통근·생극 관계를 참고하여
-        보완 우선순위를 계산한 참고용 분석입니다.
+        오행의 존재 개수만으로 판단하지 않고
+        일간·월령·지장간·통근·생극 관계를 함께 참고합니다.
+        원국에 0개인 오행은 '부족'으로 표시하며,
+        보완 우선 오행은 실제 원국 분포와 강약을 함께 고려합니다.
       </div>
 
     </div>
@@ -845,7 +883,8 @@ const $ = id => document.getElementById(id);
 
 
 /* =========================
-   원석 데이터
+   원석 / 컬러 데이터
+   ※ 목 = 페리도트 유지
 ========================= */
 
 const DATA = {
@@ -893,6 +932,15 @@ const DATA = {
 };
 
 
+const ELEMENTS=[
+  "목",
+  "화",
+  "토",
+  "금",
+  "수"
+];
+
+
 const elNames={
   목:"mok",
   화:"hwa",
@@ -909,6 +957,7 @@ const elNames={
 const hourSel=$("hour");
 const minSel=$("minute");
 
+
 for(let h=0;h<24;h++){
 
   hourSel.insertAdjacentHTML(
@@ -919,6 +968,7 @@ for(let h=0;h<24;h++){
   );
 
 }
+
 
 for(let m=0;m<60;m++){
 
@@ -931,6 +981,7 @@ for(let m=0;m<60;m++){
 
 }
 
+
 hourSel.value="12";
 minSel.value="00";
 
@@ -941,56 +992,57 @@ minSel.value="00";
 
 const birthTimeUnknown=$("birthTimeUnknown");
 
-birthTimeUnknown.addEventListener("change",()=>{
 
-  const disabled=birthTimeUnknown.checked;
+birthTimeUnknown.addEventListener(
+  "change",
+  ()=>{
 
-  hourSel.disabled=disabled;
-  minSel.disabled=disabled;
+    const disabled=
+      birthTimeUnknown.checked;
 
-  hourSel.style.opacity=disabled?".45":"1";
-  minSel.style.opacity=disabled?".45":"1";
+    hourSel.disabled=disabled;
+    minSel.disabled=disabled;
 
-});
+    hourSel.style.opacity=
+      disabled?".45":"1";
+
+    minSel.style.opacity=
+      disabled?".45":"1";
+
+  }
+);
 
 
 /* =========================
-   양력 음력
+   양력 / 음력
 ========================= */
 
 document
 .querySelectorAll('input[name="calendar"]')
 .forEach(r=>{
 
-  r.addEventListener("change",()=>{
+  r.addEventListener(
+    "change",
+    ()=>{
 
-    const cal=document
-      .querySelector('input[name="calendar"]:checked')
-      .value;
+      const cal=
+        document
+        .querySelector(
+          'input[name="calendar"]:checked'
+        )
+        .value;
 
-    $("leapWrap")
-      .classList
-      .toggle("hidden",cal!=="lunar");
+      $("leapWrap")
+        .classList
+        .toggle(
+          "hidden",
+          cal!=="lunar"
+        );
 
-    $("leap").checked=false;
+      $("leap").checked=false;
 
-  });
-
-});
-
-
-/* =========================
-   출생지역 직접입력
-========================= */
-
-$("place").addEventListener("change",()=>{
-
-  $("longitude")
-    .classList
-    .toggle(
-      "hidden",
-      $("place").value!=="custom"
-    );
+    }
+  );
 
 });
 
@@ -998,7 +1050,9 @@ $("place").addEventListener("change",()=>{
 function selectedCalendar(){
 
   return document
-    .querySelector('input[name="calendar"]:checked')
+    .querySelector(
+      'input[name="calendar"]:checked'
+    )
     .value;
 
 }
@@ -1024,27 +1078,35 @@ function formatPillar(p){
 ========================= */
 
 const generating={
+
   목:"수",
   화:"목",
   토:"화",
   금:"토",
   수:"금"
+
 };
 
+
 const generated={
+
   목:"화",
   화:"토",
   토:"금",
   금:"수",
   수:"목"
+
 };
 
+
 const controlling={
+
   목:"토",
   화:"금",
   토:"수",
   금:"목",
   수:"화"
+
 };
 
 
@@ -1116,31 +1178,58 @@ const stemEl=s=>
    원국 오행 개수
 ========================= */
 
-function rawElementCounts(r,includeHour=true){
+function rawElementCounts(
+  r,
+  includeHour=true
+){
 
   const count={
+
     목:0,
     화:0,
     토:0,
     금:0,
     수:0
+
   };
 
-  const keys=includeHour
-    ?["year","month","day","hour"]
-    :["year","month","day"];
+
+  const keys=
+    includeHour
+
+      ?["year","month","day","hour"]
+
+      :["year","month","day"];
+
 
   keys.forEach(k=>{
 
-    count[
-      stemEl(r[k].heavenlyStem)
-    ]+=1;
+    if(!r[k]) return;
 
-    count[
-      branchEl(r[k].earthlyBranch)
-    ]+=1;
+
+    const stem=
+      stemEl(
+        r[k].heavenlyStem
+      );
+
+
+    const branch=
+      branchEl(
+        r[k].earthlyBranch
+      );
+
+
+    if(count[stem]!=null){
+      count[stem]+=1;
+    }
+
+
+    if(count[branch]!=null){
+      count[branch]+=1;
+    }
 
   });
+
 
   return count;
 
@@ -1148,40 +1237,54 @@ function rawElementCounts(r,includeHour=true){
 
 
 /* =========================
-   오행 강약 분석
+   전통식 오행 강약 분석
 ========================= */
 
-function traditionalAnalysis(r,includeHour=true){
+function traditionalAnalysis(
+  r,
+  includeHour=true
+){
 
   const score={
+
     목:0,
     화:0,
     토:0,
     금:0,
     수:0
+
   };
 
 
   const add=(e,v)=>{
 
     if(score[e]!=null){
+
       score[e]+=v;
+
     }
 
   };
 
 
-  const keys=includeHour
-    ?["year","month","day","hour"]
-    :["year","month","day"];
+  const keys=
+    includeHour
+
+      ?["year","month","day","hour"]
+
+      :["year","month","day"];
 
 
   /* 천간 */
 
   keys.forEach(k=>{
 
+    if(!r[k]) return;
+
     add(
-      stemEl(r[k].heavenlyStem),
+      stemEl(
+        r[k].heavenlyStem
+      ),
       1
     );
 
@@ -1192,21 +1295,26 @@ function traditionalAnalysis(r,includeHour=true){
 
   keys.forEach(k=>{
 
+    if(!r[k]) return;
+
+
     const hs=
       hiddenStems[
         r[k].earthlyBranch
       ] || [];
 
+
     hs.forEach((s,i)=>{
 
       add(
+
         stemEl(s),
 
         i===0
           ?1
           :i===1
-            ?.45
-            :.25
+            ?0.45
+            :0.25
 
       );
 
@@ -1231,14 +1339,21 @@ function traditionalAnalysis(r,includeHour=true){
     );
 
 
-  add(monthEl,2.5);
+  add(
+    monthEl,
+    2.5
+  );
 
 
   /* 통근 */
 
   let root=0;
 
+
   keys.forEach(k=>{
+
+    if(!r[k]) return;
+
 
     const hs=
       hiddenStems[
@@ -1252,7 +1367,7 @@ function traditionalAnalysis(r,includeHour=true){
       )
     ){
 
-      root+=
+      root +=
         k==="month"
           ?2
           :1;
@@ -1262,7 +1377,7 @@ function traditionalAnalysis(r,includeHour=true){
   });
 
 
-  /* 일간 강약 */
+  /* 평균 */
 
   const avg=
     Object
@@ -1272,6 +1387,22 @@ function traditionalAnalysis(r,includeHour=true){
       0
     )/5;
 
+
+  /*
+    일간 강약
+
+    생조:
+    인성 + 비견
+
+    설기:
+    식상
+
+    재:
+    재성
+
+    관:
+    관성
+  */
 
   const strength=
 
@@ -1288,6 +1419,7 @@ function traditionalAnalysis(r,includeHour=true){
 
   const strong=
     strength>avg*1.2;
+
 
   const weak=
     strength<avg*.82;
@@ -1322,7 +1454,7 @@ function traditionalAnalysis(r,includeHour=true){
   else{
 
     candidates=
-      ["목","화","토","금","수"]
+      [...ELEMENTS]
       .sort(
         (a,b)=>
           score[a]-score[b]
@@ -1334,9 +1466,7 @@ function traditionalAnalysis(r,includeHour=true){
 
 
   const yongsin=
-
     [...new Set(candidates)]
-
     .sort(
       (a,b)=>
         score[a]-score[b]
@@ -1345,6 +1475,7 @@ function traditionalAnalysis(r,includeHour=true){
 
   const helper=
     generating[yongsin];
+
 
   const controller=
     controlling[yongsin];
@@ -1379,20 +1510,223 @@ function traditionalAnalysis(r,includeHour=true){
 
 
 /* =========================
+   보완 우선 오행 결정
+=========================
+
+   핵심 수정:
+
+   1. 원국에 0개가 있으면 무조건 0개를 우선
+   2. 여러 개라면 전통 분석 점수가 가장 낮은 쪽
+   3. 0개가 없다면 가장 약한 오행을 우선
+   4. 기존 용신이 실제로 낮은 편이면 우선적으로 사용
+========================= */
+
+function getPriorityElement(
+  rawCounts,
+  analysis
+){
+
+  const zeroElements=
+    ELEMENTS.filter(
+      e=>rawCounts[e]===0
+    );
+
+
+  /* 0개가 있으면 반드시 부족 오행 우선 */
+
+  if(zeroElements.length>0){
+
+    return [
+      ...zeroElements
+    ]
+    .sort(
+      (a,b)=>
+        analysis.score[a]
+        -
+        analysis.score[b]
+    )[0];
+
+  }
+
+
+  /*
+    0개가 없다면
+    실제 강약 점수가 낮은 오행을 우선
+  */
+
+  const sorted=
+    [...ELEMENTS]
+    .sort(
+      (a,b)=>
+        analysis.score[a]
+        -
+        analysis.score[b]
+    );
+
+
+  /*
+    기존 yongsin이 하위 2개에 포함된다면
+    기존 분석 결과도 존중
+  */
+
+  const lowerTwo=
+    sorted.slice(0,2);
+
+
+  if(
+    lowerTwo.includes(
+      analysis.yongsin
+    )
+  ){
+
+    return analysis.yongsin;
+
+  }
+
+
+  return sorted[0];
+
+}
+
+
+/* =========================
+   강약 상태
+========================= */
+
+function getStrengthStatus(
+  element,
+  score,
+  rawCounts
+){
+
+  const count=
+    rawCounts[element] || 0;
+
+
+  /*
+    가장 중요한 예외:
+    원국에 전혀 없으면 절대 강으로 표시하지 않음
+  */
+
+  if(count===0){
+
+    return "부족";
+
+  }
+
+
+  const values=
+    Object.values(score);
+
+
+  const avg=
+    values.reduce(
+      (a,b)=>a+b,
+      0
+    )/5;
+
+
+  /*
+    평균값을 기준으로
+    실제 강약 점수를 표시
+
+    매우 낮음 → 약함
+    평균 근처 → 보통
+    높음 → 강함
+    매우 높음 → 과다
+  */
+
+  if(
+    score[element] < avg*.78
+  ){
+
+    return "약함";
+
+  }
+
+
+  if(
+    score[element] >= avg*1.5
+  ){
+
+    return "과다";
+
+  }
+
+
+  if(
+    score[element] >= avg*1.2
+  ){
+
+    return "강함";
+
+  }
+
+
+  return "보통";
+
+}
+
+
+/* =========================
+   강약 상태 CSS
+========================= */
+
+function statusClass(status){
+
+  if(status==="부족"){
+    return "status-deficient";
+  }
+
+  if(status==="약함"){
+    return "status-weak";
+  }
+
+  if(status==="강함"){
+    return "status-strong";
+  }
+
+  if(status==="과다"){
+    return "status-excess";
+  }
+
+  return "status-normal";
+
+}
+
+
+/* =========================
    그래프
 ========================= */
 
-function setBar(e,n){
+function setBar(
+  e,
+  n,
+  maxCount
+){
 
-  const id=elNames[e];
+  const id=
+    elNames[e];
 
-  $(`n-${id}`).textContent=n;
 
-  $(`b-${id}`).style.width=
+  $(`n-${id}`)
+    .textContent=n;
 
-    (
-      Math.min(n,4)/4*100
-    )+"%";
+
+  const percent=
+    maxCount>0
+
+      ?Math.min(
+        n/maxCount*100,
+        100
+      )
+
+      :0;
+
+
+  $(`b-${id}`)
+    .style.width=
+      percent+"%";
 
 }
 
@@ -1403,7 +1737,9 @@ function setBar(e,n){
 
 function makeStones(e){
 
-  const d=DATA[e];
+  const d=
+    DATA[e];
+
 
   $("stones").innerHTML=
 
@@ -1432,78 +1768,66 @@ function makeStones(e){
 
 
 /* =========================
-   강약 상태
+   강약 표시
 ========================= */
-
-function getStrengthStatus(
-  element,
-  score,
-  missing
-){
-
-  if(element===missing){
-    return "보완 필요";
-  }
-
-  const values=
-    Object.values(score);
-
-  const avg=
-    values.reduce(
-      (a,b)=>a+b,
-      0
-    )/5;
-
-
-  if(score[element]>=avg*1.25){
-    return "강";
-  }
-
-  return "보통";
-
-}
-
 
 function renderStrength(
   score,
-  missing
+  rawCounts,
+  priority
 ){
-
-  const names=[
-    "목",
-    "화",
-    "토",
-    "금",
-    "수"
-  ];
-
 
   $("strengthList").innerHTML=
 
-    names.map(e=>{
+    ELEMENTS
+    .map(e=>{
 
       const status=
         getStrengthStatus(
           e,
           score,
-          missing
+          rawCounts
         );
+
+
+      const priorityMark=
+        e===priority
+          ?"priority"
+          :"";
+
 
       return `
 
-        <div class="strength-row ${e===missing?"priority":""}">
+        <div class="strength-row ${priorityMark}">
 
-          <span>${e}</span>
+          <span>
 
-          <strong>
+            ${e}
+
+            <span class="strength-count">
+              ${rawCounts[e]}개
+            </span>
+
+          </span>
+
+          <strong class="${statusClass(status)}">
+
             ${status}
+
+            ${
+              e===priority
+                ?" · 보완 우선"
+                :""
+            }
+
           </strong>
 
         </div>
 
       `;
 
-    }).join("");
+    })
+    .join("");
 
 }
 
@@ -1516,39 +1840,36 @@ function resultText(
   r,
   rawCounts,
   analysis,
-  missing,
+  priority,
   color,
   unknownTime
 ){
 
-  const names=[
-    "목",
-    "화",
-    "토",
-    "금",
-    "수"
-  ];
-
-
   const strengthText=
 
-    names.map(e=>
+    ELEMENTS
+    .map(e=>{
 
-      `${e} ${
+      const status=
         getStrengthStatus(
           e,
           analysis.score,
-          missing
-        )
-      }`
+          rawCounts
+        );
 
-    ).join(" · ");
+
+      return `${e} ${rawCounts[e]}개 · ${status}`;
+
+    })
+    .join(" · ");
 
 
   const hourText=
 
     unknownTime
+
       ?"미상"
+
       :formatPillar(r.hour);
 
 
@@ -1562,13 +1883,13 @@ function resultText(
 오행 강약 분석:
 ${strengthText}
 
-보완 우선 오행: ${missing}
+보완 우선 오행: ${priority}
 
 개운 컬러: ${color}
 
-개운원석매듭팔찌: ${DATA[missing].stone} 천연석
+개운원석매듭팔찌: ${DATA[priority].stone} 천연석
 
-※ 원국에 해당 오행이 존재하는 것과 오행의 강약은 서로 다릅니다.
+※ 원국에 해당 오행이 존재하는 것과 오행의 강약은 서로 다를 수 있습니다.
 일간·월령·지장간·통근·생극 관계를 반영한 참고용 분석입니다.`;
 
 }
@@ -1592,28 +1913,30 @@ $("calc").addEventListener(
 
     try{
 
-      const y=num("year");
+      const y=
+        num("year");
 
-      const m=num("month");
 
-      const d=num("day");
+      const m=
+        num("month");
+
+
+      const d=
+        num("day");
 
 
       const unknownTime=
-
         $("birthTimeUnknown")
         .checked;
 
 
       const h=
-
         unknownTime
           ?12
           :num("hour");
 
 
       const mi=
-
         unknownTime
           ?0
           :num("minute");
@@ -1627,32 +1950,42 @@ $("calc").addEventListener(
         $("leap").checked;
 
 
+      /* 날짜 기본 검사 */
+
       if(
 
         !Number.isInteger(y)
 
         ||
+
         !Number.isInteger(m)
 
         ||
+
         !Number.isInteger(d)
 
         ||
+
         y<1800
 
         ||
+
         y>2100
 
         ||
+
         m<1
 
         ||
+
         m>12
 
         ||
+
         d<1
 
         ||
+
         d>31
 
       ){
@@ -1668,10 +2001,13 @@ $("calc").addEventListener(
       let solarM=m;
       let solarD=d;
 
+
       let lunarText="";
 
 
-      /* 음력 */
+      /* =========================
+         음력 → 양력
+      ========================= */
 
       if(cal==="lunar"){
 
@@ -1684,6 +2020,15 @@ $("calc").addEventListener(
           );
 
 
+        if(!s){
+
+          throw new Error(
+            "음력 날짜를 양력으로 변환하지 못했습니다."
+          );
+
+        }
+
+
         solarY=s.year;
         solarM=s.month;
         solarD=s.day;
@@ -1694,6 +2039,7 @@ $("calc").addEventListener(
           `음력 ${y}년 ${m}월 ${d}일`
 
           +
+
           (
             leap
               ?" (윤달)"
@@ -1703,7 +2049,9 @@ $("calc").addEventListener(
       }
 
 
-      /* 양력 */
+      /* =========================
+         양력 검사
+      ========================= */
 
       else{
 
@@ -1744,11 +2092,21 @@ $("calc").addEventListener(
           );
 
 
+        if(!l){
+
+          throw new Error(
+            "음력 변환 중 오류가 발생했습니다."
+          );
+
+        }
+
+
         lunarText=
 
           `음력 ${l.year}년 ${l.month}월 ${l.day}일`
 
           +
+
           (
             l.isLeapMonth
               ?" (윤달)"
@@ -1758,7 +2116,9 @@ $("calc").addEventListener(
       }
 
 
-      /* 경도 */
+      /* =========================
+         경도
+      ========================= */
 
       let longitude=
         Number(
@@ -1778,7 +2138,9 @@ $("calc").addEventListener(
 
         if(
 
-          !Number.isFinite(longitude)
+          !Number.isFinite(
+            longitude
+          )
 
           ||
 
@@ -1799,10 +2161,11 @@ $("calc").addEventListener(
       }
 
 
-      /* 사주 계산 */
+      /* =========================
+         사주 계산
+      ========================= */
 
       const r=
-
         calculateFourPillars({
 
           year:solarY,
@@ -1815,9 +2178,13 @@ $("calc").addEventListener(
           isLunar:false,
 
           trueSolarTime:{
+
             longitude,
+
             applyEquationOfTime:true,
+
             applyHistoricalDst:true
+
           },
 
           dayBoundary:"midnight"
@@ -1825,10 +2192,20 @@ $("calc").addEventListener(
         });
 
 
-      /* 분석 */
+      if(!r || !r.year || !r.month || !r.day){
+
+        throw new Error(
+          "사주 계산 결과를 가져오지 못했습니다."
+        );
+
+      }
+
+
+      /* =========================
+         분석
+      ========================= */
 
       const analysis=
-
         traditionalAnalysis(
           r,
           !unknownTime
@@ -1836,22 +2213,37 @@ $("calc").addEventListener(
 
 
       const rawCounts=
-
         rawElementCounts(
           r,
           !unknownTime
         );
 
 
-      const missing=
-        analysis.yongsin;
+      /*
+        핵심:
+        기존에는
+        missing = analysis.yongsin
+        으로만 결정했음.
+
+        이제 실제 원국에 0개인 오행을
+        가장 먼저 확인하고,
+        없으면 실제 강약 점수를 반영.
+      */
+
+      const priority=
+        getPriorityElement(
+          rawCounts,
+          analysis
+        );
 
 
       const dta=
-        DATA[missing];
+        DATA[priority];
 
 
-      /* 시간 미상 안내 */
+      /* =========================
+         시간 미상 안내
+      ========================= */
 
       $("timeNotice").innerHTML=
 
@@ -1879,16 +2271,21 @@ $("calc").addEventListener(
           :"";
 
 
-      /* 사주 */
+      /* =========================
+         사주
+      ========================= */
 
       $("pYear").textContent=
         formatPillar(r.year);
 
+
       $("pMonth").textContent=
         formatPillar(r.month);
 
+
       $("pDay").textContent=
         formatPillar(r.day);
+
 
       $("pHour").textContent=
 
@@ -1897,7 +2294,9 @@ $("calc").addEventListener(
           :formatPillar(r.hour);
 
 
-      /* 날짜 정보 */
+      /* =========================
+         날짜 정보
+      ========================= */
 
       $("dateInfo").innerHTML=
 
@@ -1927,37 +2326,53 @@ $("calc").addEventListener(
         }`;
 
 
-      /* 원국 오행 */
+      /* =========================
+         원국 오행 그래프
+      ========================= */
 
-      [
-        "목",
-        "화",
-        "토",
-        "금",
-        "수"
-      ]
-      .forEach(e=>{
+      /*
+        4주:
+        천간 4 + 지지 4 = 최대 8
+
+        시간 미상:
+        천간 3 + 지지 3 = 최대 6
+      */
+
+      const maxRawCount=
+        unknownTime
+          ?6
+          :8;
+
+
+      ELEMENTS.forEach(e=>{
 
         setBar(
           e,
-          rawCounts[e]
+          rawCounts[e],
+          maxRawCount
         );
 
       });
 
 
-      /* 강약 */
+      /* =========================
+         강약
+      ========================= */
 
       renderStrength(
         analysis.score,
-        missing
+        rawCounts,
+        priority
       );
 
 
-      /* 컬러 */
+      /* =========================
+         컬러
+      ========================= */
 
       $("colorBox").style.background=
         dta.hex;
+
 
       $("colorBox").style.color=
         dta.text;
@@ -1968,8 +2383,23 @@ $("calc").addEventListener(
 
 
       $("colorCode").textContent=
+        `보완 우선 오행: ${priority}`;
 
-        `보완 우선 오행: ${missing}`;
+
+      /* =========================
+         컬러 설명
+      ========================= */
+
+      const priorityCount=
+        rawCounts[priority];
+
+
+      const priorityStatus=
+        getStrengthStatus(
+          priority,
+          analysis.score,
+          rawCounts
+        );
 
 
       $("meaning").innerHTML=
@@ -1988,9 +2418,29 @@ $("calc").addEventListener(
 
         <b>강약 판정 : ${analysis.mode}</b>
 
+        <br>
+
+        <b>보완 오행 원국 개수 : ${priorityCount}개</b>
+
+        <br>
+
+        <b>보완 오행 상태 : ${priorityStatus}</b>
+
         <br><br>
 
-        <b>보완 우선 오행 : ${missing}</b>
+        <b>보완 우선 오행 : ${priority}</b>
+
+        <br><br>
+
+        ${
+          priorityCount===0
+
+            ?`원국에 ${priority} 오행이 존재하지 않아
+               우선 보완 대상으로 안내합니다.`
+
+            :`원국의 오행 분포와 강약 점수를 함께 참고하여
+               ${priority} 오행을 보완 우선 대상으로 안내합니다.`
+        }
 
         <br><br>
 
@@ -2000,12 +2450,16 @@ $("calc").addEventListener(
         참고하여 보완 우선순위를 계산합니다.`;
 
 
-      /* 원석 */
+      /* =========================
+         원석
+      ========================= */
 
-      makeStones(missing);
+      makeStones(priority);
 
 
-      /* 팔찌 */
+      /* =========================
+         팔찌
+      ========================= */
 
       $("bracelet").innerHTML=
 
@@ -2026,7 +2480,7 @@ $("calc").addEventListener(
           <div class="detail">
 
             보완 우선 오행
-            <b>${missing}</b>을 참고하여 선택한
+            <b>${priority}</b>을 참고하여 선택한
             천연석으로 제작하는
             아뜰리에리리 개운원석매듭팔찌입니다.
 
@@ -2035,26 +2489,34 @@ $("calc").addEventListener(
             개운 컬러 :
             <b>${dta.color}</b>
 
+            <br>
+
+            오행 상태 :
+            <b>${priorityStatus}</b>
+
           </div>
 
         </div>`;
 
 
-      /* 복사 문구 */
+      /* =========================
+         복사 문구
+      ========================= */
 
       lastText=
-
         resultText(
           r,
           rawCounts,
           analysis,
-          missing,
+          priority,
           dta.color,
           unknownTime
         );
 
 
-      /* 결과 표시 */
+      /* =========================
+         결과 표시
+      ========================= */
 
       $("result")
         .classList
@@ -2063,14 +2525,20 @@ $("calc").addEventListener(
 
       $("result")
         .scrollIntoView({
+
           behavior:"smooth",
+
           block:"start"
+
         });
 
     }
 
 
     catch(err){
+
+      console.error(err);
+
 
       $("error").textContent=
 
@@ -2107,6 +2575,7 @@ $("copy").addEventListener(
       await navigator.clipboard.writeText(
         lastText
       );
+
 
       alert(
         "결과 문구를 복사했어요."
@@ -2164,11 +2633,13 @@ $("share").addEventListener(
           lastText
         );
 
+
         alert(
           "결과를 복사했어요. 카카오톡이나 인스타그램 등에 붙여넣어 주세요."
         );
 
       }
+
 
       catch{
 
