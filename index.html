@@ -74,12 +74,12 @@ button.secondary{background:#fff}.hint{font-size:12px;color:var(--muted);line-he
         <option value="126.978">서울특별시 · 126.978°E</option>
         <option value="126.705">인천 · 126.705°E</option>
         <option value="127.384">대전 · 127.384°E</option>
-        <option value="127.148">전주 · 127.148°E</option>
+        <option value="126.852">전주 · 127.148°E</option>
         <option value="126.852">광주 · 126.852°E</option>
         <option value="128.601">대구 · 128.601°E</option>
         <option value="129.075">부산 · 129.075°E</option>
-        <option value="129.311">울산 · 129.311°E</option>
-        <option value="127.487">순천 · 127.487°E</option>
+        <option value="128.591">울산 · 129.311°E</option>
+        <option value="127.291">순천 · 127.487°E</option>
         <option value="127.734">광양 · 127.734°E</option>
         <option value="custom">직접 입력</option>
       </select>
@@ -163,6 +163,7 @@ if (birthTimeUnknown) {
     });
   });
 }
+const ELEMENTS=["목","화","토","금","수"];
 const elNames = {목:"mok",화:"hwa",토:"to",금:"geum",수:"su"};
 const DATA = {
   목:{color:"그린",hex:"#dcebd8",text:"#3f6740",stone:"페리도트",meaning:"성장·활력·새로운 시작을 상징하는 그린 계열입니다."},
@@ -243,12 +244,6 @@ function rawElementCounts(r, includeHour=true){
   return count;
 }
 
-function getPriorityElement(rawCounts,analysis){
-  const zero=ELEMENTS.find(e=>rawCounts[e]===0);
-  if(zero)return zero;
-  return ELEMENTS.slice().sort((a,b)=>(analysis.score[a]??0)-(analysis.score[b]??0))[0];
-}
-
 function setBar(e,n){
   const id=elNames[e]; $(`n-${id}`).textContent=n;
   $(`b-${id}`).style.width=(Math.min(n,8)/8*100)+"%";
@@ -273,7 +268,7 @@ $("calc").addEventListener("click",()=>{
     const h=unknownTime ? 12 : num("hour");
     const mi=unknownTime ? 0 : num("minute");
     const cal=selectedCalendar(), leap=$("leap").checked;
-    if(!Number.isInteger(y)||!Number.isInteger(m)||!Number.isInteger(d)||y<1800||y>(cal==="lunar"?2100:2300)||m<1||m>12||d<1||d>31) throw new Error("생년월일을 정확하게 입력해주세요. 지원 범위는 양력 1800~2300년, 음력 1800~2100년입니다.");
+    if(!Number.isInteger(y)||!Number.isInteger(m)||!Number.isInteger(d)||y<1800||y>2100||m<1||m>12||d<1||d>31) throw new Error("생년월일을 정확하게 입력해주세요. 지원 범위는 양력 1800~2300년, 음력 1800~2100년입니다.");
     if(!unknownTime && (!Number.isInteger(h)||!Number.isInteger(mi))) throw new Error("태어난 시간을 입력하거나 ‘태어난 시간을 모르겠어요’를 체크해주세요.");
     let solarY=y,solarM=m,solarD=d;
     let lunarText="";
@@ -297,7 +292,8 @@ $("calc").addEventListener("click",()=>{
     const analysis=traditionalAnalysis(r,!unknownTime);
     const rawCounts=rawElementCounts(r,!unknownTime);
     const weightedCounts=Object.fromEntries(Object.entries(analysis.score).map(([k,v])=>[k,Math.round(v*10)/10]));
-    const missing=getPriorityElement(rawCounts,analysis);
+    const zero=ELEMENTS.find(e=>rawCounts[e]===0);
+    const missing=zero || ELEMENTS.slice().sort((a,b)=>analysis.score[a]-analysis.score[b])[0];
     const dta=DATA[missing];
     if($("timeNotice")){
       $("timeNotice").innerHTML=unknownTime
@@ -309,7 +305,7 @@ $("calc").addEventListener("click",()=>{
     $("pYear").textContent=formatPillar(r.year);$("pMonth").textContent=formatPillar(r.month);$("pDay").textContent=formatPillar(r.day);$("pHour").textContent=unknownTime?"미상":formatPillar(r.hour);
     $("dateInfo").innerHTML=`입력: ${cal==="lunar"?lunarText:`양력 ${solarY}년 ${solarM}월 ${solarD}일`}<br>변환 기준 양력: ${solarY}년 ${solarM}월 ${solarD}일 · ${lunarText}<br>출생시간: ${unknownTime ? "미상" : `${String(h).padStart(2,"0")}:${String(mi).padStart(2,"0")}`} · 경도 ${longitude.toFixed(3)}°E`;
     $("colorBox").style.background=dta.hex;$("colorBox").style.color=dta.text;
-    $("colorName").textContent=dta.color;$("colorCode").textContent=`보완 우선 오행: ${missing}`;
+    $("colorName").textContent=dta.color;$("colorCode").textContent=`부족 오행: ${missing}`;
     $("meaning").innerHTML=dta.meaning+
 `<br><br><b>일간 : ${analysis.dm}</b> · <b>월령 : ${analysis.monthEl}</b> · <b>통근 : ${analysis.root.toFixed(1)}</b>`+
 `<br><b>강약 판정 : ${analysis.mode}</b>`+
