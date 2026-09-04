@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f3ee">
+<title>아뜰리에리리 · 오행 개운컬러 찾기</title>
+<style>
+:root{--bg:#f7f3ee;--card:#fff;--ink:#2d2926;--muted:#77706a;--line:#e8dfd6;--accent:#8d7564}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+.wrap{max-width:760px;margin:auto;padding:24px 16px 56px}.brand{text-align:center;letter-spacing:.18em;font-size:13px;color:#8d7564;font-weight:700}
+h1{text-align:center;font-size:28px;margin:10px 0 8px}.sub{text-align:center;color:var(--muted);line-height:1.65;font-size:14px;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 8px 28px rgba(80,55,35,.06);margin-bottom:16px}
+.section-title{font-weight:800;font-size:16px;margin:0 0 14px}.grid3{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:9px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
+input,select,button{width:100%;height:48px;border:1px solid #ddd3ca;border-radius:12px;background:#fff;color:var(--ink);font-size:16px;padding:0 12px}
+input:focus,select:focus{outline:2px solid #d9c7b8;border-color:#b69d8b}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice label{margin:0}.choice input{display:none}.choice span{height:44px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;background:#fff}.choice input:checked+span{background:#f0e7df;border-color:#b69d8b}
+.leap{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}.leap input{width:18px;height:18px}
+button.primary{margin-top:14px;background:#554a43;color:#fff;border:none;font-weight:800;height:54px}
+button.secondary{background:#fff}.hint{font-size:12px;color:var(--muted);line-height:1.6;margin-top:10px}
+.hidden{display:none!important}.error{background:#fff2f0;border:1px solid #f0c9c1;color:#a33b2c;border-radius:12px;padding:12px;font-size:13px;margin-top:12px}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.pillar{border:1px solid var(--line);border-radius:14px;padding:13px 5px;text-align:center;background:#fffaf6}.pillar .k{font-size:11px;color:var(--muted)}.pillar .v{font-size:23px;font-weight:900;margin-top:3px}
+.info{background:#fbf8f4;border-radius:14px;padding:12px;font-size:13px;line-height:1.7;margin-top:12px}
+.bars{display:grid;gap:11px}.barrow{display:grid;grid-template-columns:38px 1fr 44px;gap:8px;align-items:center;font-size:13px}.track{height:14px;background:#eee8e2;border-radius:999px;overflow:hidden}.fill{height:100%;border-radius:999px;width:0}
+.el-mok .fill{background:#7caf76}.el-hwa .fill{background:#d8785d}.el-to .fill{background:#d6a84f}.el-geum .fill{background:#aaa9a4}.el-su .fill{background:#70a8c6}
+.result-title{text-align:center;font-size:20px;font-weight:900;margin-bottom:14px}.colorbox{border-radius:18px;padding:18px;text-align:center;border:1px solid rgba(0,0,0,.08)}.color-name{font-size:24px;font-weight:900}.color-code{font-size:12px;opacity:.7;margin-top:4px}
+.stone{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:13px;margin-top:9px}.stone-dot{width:44px;height:44px;border-radius:50%;flex:0 0 auto;border:1px solid rgba(0,0,0,.08)}.stone strong{display:block}.stone small{color:var(--muted);line-height:1.5}
+.notice{font-size:11px;color:#8a817a;line-height:1.65;margin-top:18px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+@media(max-width:520px){.grid3{grid-template-columns:1fr 1fr 1fr}.pillars .pillar .v{font-size:20px}}
+
+.check-row{margin-top:10px;padding:12px 14px;border-radius:12px;background:#faf8f4;border:1px solid #eee5d9}.checkbox-label{display:flex!important;align-items:center;gap:8px!important;font-weight:600!important;cursor:pointer}.checkbox-label input{width:18px;height:18px;margin:0}.check-row small{display:block;margin:5px 0 0 26px;color:#888;font-size:12px;line-height:1.5}
+ .time-notice{margin:12px 0;padding:12px 14px;border-radius:12px;background:#f7f3eb;border:1px solid #e9dfcf;color:#665b4d;font-size:13px;line-height:1.6}
+.unknown-time-box{margin-top:12px;padding:12px 14px;border:1.5px solid #d8c6b5;border-radius:14px;background:#fbf7f2}.unknown-time{display:flex!important;align-items:center;gap:9px!important;margin:0!important;font-size:14px!important;color:#4f4741!important;font-weight:800!important;cursor:pointer}.unknown-time input{width:20px!important;height:20px!important;margin:0!important;accent-color:#8d7564}.time-help{margin:6px 0 0 29px;font-size:12px;color:#8b8176;line-height:1.5} .analysis-explain{line-height:1.85;font-size:15px}.analysis-explain p{margin:0 0 12px}.analysis-explain p:last-child{margin-bottom:0}.analysis-note{font-size:13px;opacity:.78;padding-top:8px;border-top:1px solid rgba(0,0,0,.08)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">ATELIER RIRI</div>
+  <h1>🔮 오행 개운컬러 찾기</h1>
+  <div class="sub">생년월일과 태어난 시간을 입력하면<br>나의 사주팔자와 오행 분포, 개운 컬러와 추천 원석을 확인해보세요.</div>
+
+  <section class="card">
+    <div class="section-title">1. 생년월일</div>
+    <div class="choice">
+      <label><input type="radio" name="calendar" value="solar" checked><span>☀️ 양력</span></label>
+      <label><input type="radio" name="calendar" value="lunar"><span>🌙 음력</span></label>
+    </div>
+    <div class="grid3" style="margin-top:12px">
+      <div><label for="year">년</label><input id="year" inputmode="numeric" placeholder="1990" maxlength="4"></div>
+      <div><label for="month">월</label><input id="month" inputmode="numeric" placeholder="05" maxlength="2"></div>
+      <div><label for="day">일</label><input id="day" inputmode="numeric" placeholder="20" maxlength="2"></div>
+    </div>
+    <label class="leap hidden" id="leapWrap"><input type="checkbox" id="leap"> 음력 윤달입니다</label>
+    <div class="hint">입력 예시: 1990 / 05 / 20<br>위 숫자는 예시로만 표시되며 실제 입력값은 아닙니다. 음력은 윤달인 경우에만 체크해주세요.</div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">2. 태어난 시간</div>
+    <div class="grid2">
+      <div><label for="hour">시</label><select id="hour"></select></div>
+      <div><label for="minute">분</label><select id="minute"></select></div>
+    </div>
+    <div class="unknown-time-box">
+      <label class="unknown-time" for="birthTimeUnknown">
+        <input type="checkbox" id="birthTimeUnknown">
+        <span>🕰️ 태어난 시간을 모르겠어요</span>
+      </label>
+      <div class="time-help">시간을 모르는 경우 체크하세요. 시주는 제외하고 년주·월주·일주를 기준으로 결과를 계산합니다.</div>
+    </div>
+    <button class="primary" id="calc">✨ 내 개운컬러 확인하기</button>
+    <div id="error" class="error hidden"></div>
+  </section>
+
+  <section class="card hidden" id="result">
+    <div class="result-title"><div id="timeNotice"></div>나의 사주팔자</div>
+    <div class="pillars">
+      <div class="pillar"><div class="k">년주</div><div class="v" id="pYear">-</div></div>
+      <div class="pillar"><div class="k">월주</div><div class="v" id="pMonth">-</div></div>
+      <div class="pillar"><div class="k">일주</div><div class="v" id="pDay">-</div></div>
+      <div class="pillar"><div class="k">시주</div><div class="v" id="pHour">-</div></div>
+    </div>
+    <div class="info" id="dateInfo"></div>
+
+    <div style="margin-top:22px">
+      <div class="section-title">오행 구성</div>
+      <div class="bars">
+        <div class="barrow el-mok"><b>목</b><div class="track"><div class="fill" id="b-mok"></div></div><span id="n-mok">0</span></div>
+        <div class="barrow el-hwa"><b>화</b><div class="track"><div class="fill" id="b-hwa"></div></div><span id="n-hwa">0</span></div>
+        <div class="barrow el-to"><b>토</b><div class="track"><div class="fill" id="b-to"></div></div><span id="n-to">0</span></div>
+        <div class="barrow el-geum"><b>금</b><div class="track"><div class="fill" id="b-geum"></div></div><span id="n-geum">0</span></div>
+        <div class="barrow el-su"><b>수</b><div class="track"><div class="fill" id="b-su"></div></div><span id="n-su">0</span></div>
+      </div>
+      <div class="hint">그래프는 천간과 지지의 본기(대표 오행)를 기준으로 한 원국 구성입니다. <b>오행의 존재 여부</b>와 <b>오행의 강약</b>은 서로 다르므로, 개운 오행은 일간·월령·지장간·통근·생극 관계를 별도로 참고해 판단합니다.</div>
+      <div class="info" id="strengthInfo">오행 강약은 일간·월령·통근·생극 관계를 종합해 참고용으로 판단합니다.</div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="section-title">나의 개운컬러</div>
+      <div class="colorbox" id="colorBox">
+        <div class="color-name" id="colorName">-</div>
+        <div class="color-code" id="colorCode">보완 우선 오행 -</div>
+      </div>
+      <div class="info" id="meaning"></div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="section-title">💎 개운원석매듭팔찌</div>
+      <div id="stones"></div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="section-title">🧵 아뜰리에리리 개운원석매듭팔찌</div>
+      <div class="info" id="bracelet"></div>
+    </div>
+
+    <div class="actions">
+      <button class="secondary" id="share">📤 결과 공유하기</button>
+      <button class="secondary" id="copy">결과 문구 복사하기</button>
+    </div>
+    <button class="primary" id="reset">다시 조회하기</button>
+    <div class="notice">※ 본 서비스는 한국 기준 만세력과 일간·월령·오행 강약을 바탕으로 한 참고용 콘텐츠입니다. ‘보완 방향’은 학파와 해석법에 따라 달라질 수 있으므로 본 결과를 정밀 명리 상담의 확정값으로 보지 않습니다. 오행·색상·천연석의 의미는 전통적 상징 해석이며 건강, 재물, 미래의 결과를 보장하지 않습니다.</div>
+  </section>
+</div>
+
+<script type="module">
+import {
+  calculateFourPillars,
+  solarToLunar,
+  lunarToSolar,
+  getHeavenlyStemElement,
+  getEarthlyBranchElement
+} from "https://esm.unpkg.com/manseryeok@2.0.0";
+
+const $ = id => document.getElementById(id);
+
+const birthTimeUnknown = $("birthTimeUnknown");
+if (birthTimeUnknown) {
+  birthTimeUnknown.addEventListener("change", ()=>{
+    const hourEl=$("hour"), minEl=$("minute");
+    [hourEl,minEl].forEach(el=>{
+      if(!el) return;
+      el.disabled=birthTimeUnknown.checked;
+      el.style.opacity=birthTimeUnknown.checked ? ".45" : "1";
+    });
+  });
+}
+const elNames = {목:"mok",화:"hwa",토:"to",금:"geum",수:"su"};
+const DATA = {
+  목:{color:"그린",hex:"#dcebd8",text:"#3f6740",stone:"페리도트",meaning:"성장·활력·새로운 시작을 상징하는 그린 계열입니다."},
+  화:{color:"레드",hex:"#f4d5ce",text:"#9b4332",stone:"가넷",meaning:"열정·표현·자신감을 상징하는 레드 계열입니다."},
+  토:{color:"골드·브라운",hex:"#f1e3b9",text:"#7d641f",stone:"호안석",meaning:"안정·중심·균형을 상징하는 골드·브라운 계열입니다."},
+  금:{color:"화이트",hex:"#f7f7f4",text:"#55514b",stone:"문스톤",meaning:"정돈·맑음·차분함을 상징하는 화이트 계열입니다."},
+  수:{color:"하늘색·블루",hex:"#d9eef8",text:"#376b83",stone:"블루 아파타이트",meaning:"유연함·소통·흐름을 상징하는 하늘색·블루 계열입니다."}
+};
+const hourSel=$("hour"), minSel=$("minute");
+for(let h=0;h<24;h++) hourSel.insertAdjacentHTML("beforeend",`<option value="${h}">${String(h).padStart(2,"0")}시</option>`);
+for(let m=0;m<60;m++) minSel.insertAdjacentHTML("beforeend",`<option value="${m}">${String(m).padStart(2,"0")}분</option>`);
+hourSel.value="14"; minSel.value="30";
+
+document.querySelectorAll('input[name="calendar"]').forEach(r=>r.addEventListener("change",()=>{
+  $("leapWrap").classList.toggle("hidden", document.querySelector('input[name="calendar"]:checked').value!=="lunar");
+  $("leap").checked=false;
+}));
+
+function selectedCalendar(){return document.querySelector('input[name="calendar"]:checked').value}
+function num(id){return Number($(id).value)}
+function formatPillar(p){return p.korean ?? `${p.heavenlyStem}${p.earthlyBranch}`}
+function pillarParts(p){return [p.heavenlyStem,p.earthlyBranch]}
+const generating={목:"수",화:"목",토:"화",금:"토",수:"금"};
+const generated={목:"화",화:"토",토:"금",금:"수",수:"목"};
+const controlling={목:"토",화:"금",토:"수",금:"목",수:"화"};
+const branchMain={子:"수",丑:"토",寅:"목",卯:"목",辰:"토",巳:"화",午:"화",未:"토",申:"금",酉:"금",戌:"토",亥:"수"};
+const hiddenStems={
+  子:["癸"],丑:["己","癸","辛"],寅:["甲","丙","戊"],卯:["乙"],
+  辰:["戊","乙","癸"],巳:["丙","戊","庚"],午:["丁","己"],未:["己","丁","乙"],
+  申:["庚","壬","戊"],酉:["辛"],戌:["戊","辛","丁"],亥:["壬","甲"]
+};
+const branchEl=b=>branchMain[b]||getEarthlyBranchElement(b);
+const stemEl=s=>getHeavenlyStemElement(s);
+
+function traditionalAnalysis(r, includeHour=true){
+  const elements=["목","화","토","금","수"];
+  const score=Object.fromEntries(elements.map(e=>[e,0]));
+  const add=(e,v)=>{if(score[e]!=null)score[e]+=v};
+  const keys=includeHour ? ["year","month","day","hour"] : ["year","month","day"];
+  const dm=stemEl(r.day.heavenlyStem);
+  const resource=generating[dm], output=generated[dm], control=controlling[dm];
+  const monthEl=branchEl(r.month.earthlyBranch);
+  keys.forEach(k=>add(stemEl(r[k].heavenlyStem),1.0));
+  keys.forEach(k=>(hiddenStems[r[k].earthlyBranch]||[]).forEach((st,i)=>add(stemEl(st),i===0?1.0:i===1?0.5:0.25)));
+  const seasonal={목:{목:3.0,수:1.2,화:.4,토:-.4,금:-1.0},화:{화:3.0,목:1.2,토:.4,금:-.8,수:-1.0},토:{토:3.0,화:1.2,금:.4,목:-.4,수:-.8},금:{금:3.0,토:1.2,수:.4,화:-.8,목:-1.0},수:{수:3.0,금:1.2,목:.4,토:-.8,화:-1.0}};
+  const season=seasonal[monthEl]||{}; elements.forEach(e=>add(e,season[e]||0));
+  let root=0;
+  keys.forEach(k=>{const hs=hiddenStems[r[k].earthlyBranch]||[];if(hs.some(st=>stemEl(st)===dm))root+=k==="month"?2.5:(k==="day"?1.5:1.0)});
+  const support=score[dm]+score[resource]+root*1.25;
+  const pressure=score[output]+score[control]+score[controlling[output]]*0.25;
+  const ratio=support/Math.max(1,support+pressure);
+  let mode=ratio>=0.57?"신강형":ratio<=0.43?"신약형":"중화형";
+  const candidates=mode==="신약형"?[resource,dm]:mode==="신강형"?[output,control]:[resource,dm,output,control];
+  const yongsin=[...new Set(candidates)].sort((a,b)=>score[a]-score[b])[0];
+  return {score,dm,monthEl,root,support,pressure,ratio,mode,yongsin};
+}
+function rawElementCounts(r, includeHour=true){
+  const count={목:0,화:0,토:0,금:0,수:0};
+  const keys=includeHour ? ["year","month","day","hour"] : ["year","month","day"];
+  keys.forEach(k=>{
+    count[stemEl(r[k].heavenlyStem)] += 1;
+    count[branchEl(r[k].earthlyBranch)] += 1;
+  });
+  return count;
+}
+
+function setBar(e,n){
+  const id=elNames[e]; $(`n-${id}`).textContent=n;
+  $(`b-${id}`).style.width=(Math.min(n,8)/8*100)+"%";
+}
+function makeStones(e){
+  const d=DATA[e];
+  $("stones").innerHTML=`<div class="stone">
+    <div class="stone-dot" style="background:${d.hex}"></div>
+    <div><strong>${d.stone}</strong><small>천연석</small></div>
+  </div>`;
+}
+function resultText(r,rawCounts,missingElements,supportElement,unknownTime,analysis){
+  const hourText = unknownTime ? "미상" : formatPillar(r.hour);
+  const absent = missingElements.length ? missingElements.join(", ") : "없음";
+  return `아뜰리에리리 오행 개운컬러 결과\n사주: ${formatPillar(r.year)} · ${formatPillar(r.month)} · ${formatPillar(r.day)} · ${hourText}\n강약 흐름: ${analysis.mode}\n원국 오행 구성: 목 ${rawCounts.목}, 화 ${rawCounts.화}, 토 ${rawCounts.토}, 금 ${rawCounts.금}, 수 ${rawCounts.수}\n원국에서 없는 오행: ${absent}\n사주 구조상 보완 우선 오행: ${supportElement}\n개운 컬러: ${DATA[supportElement].color}\n개운원석매듭팔찌: ${DATA[supportElement].stone}\n※ 원국의 오행 존재 여부와 사주 구조상 보완 우선 오행은 서로 다를 수 있습니다. 일간·월령·지장간·통근·생극 관계를 반영한 참고용 결과입니다.`;
+}
+let lastText="";
+$("calc").addEventListener("click",()=>{
+  $("error").classList.add("hidden");
+  try{
+    const y=num("year"),m=num("month"),d=num("day");
+    const unknownTime=$("birthTimeUnknown")?.checked || false;
+    const h=unknownTime ? 12 : num("hour");
+    const mi=unknownTime ? 0 : num("minute");
+    const cal=selectedCalendar(), leap=$("leap").checked;
+    if(!Number.isInteger(y)||!Number.isInteger(m)||!Number.isInteger(d)||y<1800||y>2300||m<1||m>12||d<1||d>31) throw new Error("생년월일을 정확하게 입력해주세요. 양력은 1800~2300년, 음력은 1800~2100년까지 지원합니다.");
+    if(!unknownTime && (!Number.isInteger(h)||!Number.isInteger(mi))) throw new Error("태어난 시간을 입력하거나 ‘태어난 시간을 모르겠어요’를 체크해주세요.");
+    let solarY=y,solarM=m,solarD=d;
+    let lunarText="";
+    if(cal==="lunar"){
+      if(y>2100) throw new Error("음력 입력은 1800~2100년 범위에서 사용할 수 있습니다.");
+      const s=lunarToSolar(y,m,d,leap);
+      solarY=s.year;solarM=s.month;solarD=s.day;
+      lunarText=`음력 ${y}년 ${m}월 ${d}일${leap?" (윤달)":""}`;
+    }else{
+      const l=solarToLunar(y,m,d);
+      lunarText=`음력 ${l.year}년 ${l.month}월 ${l.day}일${l.isLeapMonth?" (윤달)":""}`;
+    }
+    const r=calculateFourPillars({
+      year:solarY,month:solarM,day:solarD,hour:h,minute:mi,
+      isLunar:false,
+      dayBoundary:"midnight"
+    });
+    const analysis=traditionalAnalysis(r,!unknownTime);
+    const rawCounts=rawElementCounts(r,!unknownTime);
+    const missingElements=["목","화","토","금","수"].filter(e=>rawCounts[e]===0);
+    const supportElement=analysis.yongsin;
+    const dta=DATA[supportElement];
+    if($("timeNotice")){
+      $("timeNotice").innerHTML=unknownTime
+        ? `<div class="time-notice">🕰️ <b>태어난 시간을 모르는 상태로 분석했습니다.</b><br>시주는 제외하고 년주·월주·일주를 기준으로 개운원석매듭팔찌를 추천합니다.</div>`
+        : "";
+    }
+    ["목","화","토","금","수"].forEach(e=>setBar(e,rawCounts[e]));
+    $("strengthInfo").innerHTML=`<b>오행 분석 안내</b> · 일간의 기운을 중심으로 월령·지장간·통근·생극 관계를 종합해 보완 방향을 판단합니다.`;
+    $("pYear").textContent=formatPillar(r.year);$("pMonth").textContent=formatPillar(r.month);$("pDay").textContent=formatPillar(r.day);$("pHour").textContent=unknownTime?"미상":formatPillar(r.hour);
+    $("dateInfo").innerHTML=`입력: ${cal==="lunar"?lunarText:`양력 ${solarY}년 ${solarM}월 ${solarD}일`}<br>변환 기준 양력: ${solarY}년 ${solarM}월 ${solarD}일 · ${lunarText}<br>출생시간: ${unknownTime ? "미상" : `${String(h).padStart(2,"0")}:${String(mi).padStart(2,"0")}`}`;
+    $("colorBox").style.background=dta.hex;$("colorBox").style.color=dta.text;
+    $("colorName").textContent=dta.color;$("colorCode").textContent=`원국 부재 오행: ${missingElements.length ? missingElements.join(", ") : "없음"} · 보완 우선: ${supportElement}`;
+    const elementNames={목:"목(木)",화:"화(火)",토:"토(土)",금:"금(金)",수:"수(水)"};
+    const dmName=elementNames[analysis.dm], supportName=elementNames[supportElement];
+    const absentText=missingElements.length ? missingElements.map(e=>elementNames[e]).join(", ") : "없음";
+    let modeExplain="";
+    if(analysis.mode==="신약형") modeExplain=`${dmName}의 기운이 상대적으로 약한 구조로 판단되어 <b>신약한 흐름</b>으로 분류되었습니다.<br><br>${dmName}을 생해주는 오행은 <b>${supportName}</b>이므로, 현재 구조에서는 ${supportName}을 보완 방향으로 우선 고려합니다.`;
+    else if(analysis.mode==="신강형") modeExplain=`${dmName}의 기운이 비교적 강한 구조로 판단되어 <b>신강한 흐름</b>으로 분류되었습니다.<br><br>강한 ${dmName}의 기운을 한쪽으로 더하지 않고, 이를 자연스럽게 풀어주거나 조절하는 <b>${supportName}</b>을 보완 방향으로 우선 고려합니다.`;
+    else modeExplain=`${dmName}의 기운이 한쪽으로 크게 치우치지 않아 <b>비교적 균형적인 흐름</b>으로 판단되었습니다.<br><br>전체 오행의 배치와 생극 관계를 함께 살펴 <b>${supportName}</b>을 보완 방향으로 우선 고려합니다.`;
+    $("meaning").innerHTML=`<div class="analysis-explain">
+      <p>🌿 <b>당신의 일간은 ${dmName}입니다.</b></p>
+      <p>${modeExplain}</p>
+      <p>사주 원국에는 <b>${absentText}</b>${missingElements.length ? "이(가) 존재하지 않지만" : "의 부재가 확인되지 않지만"}, 단순히 없는 오행을 채우는 것보다 현재 사주 구조에서 균형을 돕는 방향을 우선적으로 고려합니다.</p>
+      <p>따라서 개운컬러와 원석 역시 <b>${supportName}</b>에 해당하는 <b>${dta.color} 계열</b>과 <b>${dta.stone}</b>을 우선 추천하는 구조입니다.</p>
+      <p class="analysis-note">※ 오행의 강약과 보완 방향은 일간·월령·지장간·통근 및 오행 간의 생극 관계를 종합한 참고용 분석입니다. 명리학의 해석 방법과 학파에 따라 결과가 달라질 수 있습니다.</p>
+    </div>`;
+    makeStones(supportElement);
+    $("bracelet").innerHTML=`사주 구조상 보완 우선 오행 <b>${supportElement}</b>을 중심으로 선택한 <b>${dta.stone}</b>을 사용한 <b>천연석 개운원석매듭팔찌</b>입니다.<br><br><b>원석 : ${dta.stone}</b><br><b>개운 컬러 : ${dta.color}</b><br><b>구성 : 천연석</b><br><br>※ 오행·색상·원석은 전통 명리학의 상징을 바탕으로 한 상품 콘셉트용 참고 정보입니다.`;
+    lastText=resultText(r,rawCounts,missingElements,supportElement,unknownTime,analysis);
+    $("result").classList.remove("hidden");
+    $("result").scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(err){
+    $("error").textContent=err?.message||"계산 중 오류가 발생했습니다. 입력값을 확인해주세요.";
+    $("error").classList.remove("hidden");
+  }
+});
+$("copy").addEventListener("click",async()=>{if(!lastText)return;try{await navigator.clipboard.writeText(lastText);alert("결과 문구를 복사했어요.");}catch{alert(lastText)}});
+$("share").addEventListener("click",async()=>{if(!lastText)return;if(navigator.share){try{await navigator.share({title:"아뜰리에리리 오행 개운컬러 결과",text:lastText})}catch{}}else{try{await navigator.clipboard.writeText(lastText);alert("결과를 복사했어요. 인스타그램/카카오톡 등에 붙여넣어 주세요.");}catch{alert(lastText)}}});
+$("reset").addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});$("result").classList.add("hidden")});
+</script>
+</body>
+</html>
